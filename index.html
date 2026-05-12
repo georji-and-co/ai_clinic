@@ -346,6 +346,208 @@ section { padding: 64px 24px; }
 .sticky-cta .btn-tel-sm:hover { background: var(--gray-100); }
 .sticky-cta svg { overflow: visible; flex-shrink: 0; }
 
+/* ===== PHILOSOPHY ===== */
+.philosophy-section {
+  background: var(--gray-800);
+  color: #fff;
+  padding: 72px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.philosophy-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 90% 10%, rgba(13,96,104,0.35) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 5% 85%, rgba(212,162,76,0.10) 0%, transparent 60%);
+  pointer-events: none;
+}
+.philosophy-section .sec-label { color: var(--teal-mid); }
+.philosophy-section .sec-title { color: #fff; }
+.philosophy-tagline {
+  font-family: var(--font-min);
+  font-size: clamp(13px, 2vw, 16px);
+  color: rgba(255,255,255,0.6);
+  line-height: 1.85;
+  max-width: 580px;
+  margin-bottom: 52px;
+}
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+.philosophy-card {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 32px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(4px);
+  transition: border-color 0.25s, background 0.25s;
+}
+.philosophy-card:hover {
+  border-color: rgba(194,228,231,0.35);
+  background: rgba(255,255,255,0.07);
+}
+.philosophy-num {
+  font-family: var(--font-min);
+  font-size: 42px;
+  font-weight: 800;
+  color: rgba(194,228,231,0.18);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.philosophy-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: rgba(13,96,104,0.5);
+  border: 1px solid rgba(194,228,231,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -8px;
+}
+.philosophy-icon svg { width: 22px; height: 22px; color: var(--teal-mid); }
+.philosophy-title {
+  font-family: var(--font-min);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #fff;
+}
+.philosophy-body {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.9;
+}
+.philosophy-quote {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: 48px;
+  padding-top: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+.philosophy-quote-mark {
+  font-family: var(--font-min);
+  font-size: 64px;
+  line-height: 0.8;
+  color: rgba(194,228,231,0.25);
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+.philosophy-quote-text {
+  font-family: var(--font-min);
+  font-size: clamp(13px, 1.8vw, 15px);
+  color: rgba(255,255,255,0.65);
+  line-height: 2;
+}
+@media (max-width: 767px) {
+  .philosophy-grid { grid-template-columns: 1fr; gap: 14px; }
+  .philosophy-num { font-size: 32px; }
+}
+
+/* ===== CLINIC FEATURES ===== */
+.clinic-features-section {
+  background: var(--white);
+  padding: 72px 24px;
+}
+.features-group {
+  margin-bottom: 12px;
+  border: 1px solid var(--gray-100);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 8px rgba(13,96,104,0.06);
+}
+.features-group-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 24px;
+  cursor: pointer;
+  background: #fff;
+  transition: background 0.2s;
+  user-select: none;
+  list-style: none;
+}
+.features-group-header:hover { background: var(--gray-50); }
+.features-group-header::-webkit-details-marker { display: none; }
+.fg-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--teal-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.fg-icon svg { width: 22px; height: 22px; color: var(--teal); }
+.fg-title {
+  flex: 1;
+  font-family: var(--font-min);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+.fg-count {
+  font-size: 11px;
+  color: var(--gray-400);
+  white-space: nowrap;
+}
+.fg-chevron {
+  width: 20px; height: 20px;
+  color: var(--gray-400);
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+details[open] .fg-chevron { transform: rotate(180deg); }
+details[open] .features-group-header { background: var(--teal-light); }
+details[open] .fg-title { color: var(--teal-dark); }
+.features-group-body {
+  border-top: 1px solid var(--gray-100);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 0;
+}
+.fg-item {
+  padding: 22px 22px;
+  border-right: 1px solid var(--gray-100);
+  border-bottom: 1px solid var(--gray-100);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.fg-item:nth-child(3n) { border-right: none; }
+.fg-item-num {
+  font-size: 10px;
+  color: var(--teal);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.fg-item-title {
+  font-family: var(--font-min);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gray-800);
+  line-height: 1.35;
+}
+.fg-item-body {
+  font-size: 12px;
+  color: var(--gray-600);
+  line-height: 1.8;
+}
+@media (max-width: 767px) {
+  .features-group-body { grid-template-columns: 1fr; }
+  .fg-item { border-right: none; }
+  .fg-item:nth-child(3n) { border-right: none; }
+}
+
 /* ===== DEPT NAVIGATOR (重要) ===== */
 .dept-nav-section {
   background: var(--gray-50);
@@ -829,6 +1031,155 @@ footer {
   </div>
 </section>
 
+<!-- PHILOSOPHY -->
+<section class="philosophy-section">
+  <div class="sec-inner">
+    <div class="sec-label fade-in">Our Philosophy</div>
+    <h2 class="sec-title fade-in">３つの理念</h2>
+    <p class="philosophy-tagline fade-in">
+      質の高い医療を慈愛の心で。<br>
+      患者様と地域に、真摯に向き合うために。
+    </p>
+    <div class="philosophy-grid">
+
+      <div class="philosophy-card fade-in">
+        <div class="philosophy-num">01</div>
+        <div class="philosophy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </div>
+        <div class="philosophy-title">患者様の癒し</div>
+        <p class="philosophy-body">質の高い医療を慈愛の心で丁寧に行い、一人でも多くの患者様が気持ちを癒され、安心して明るく元気になれるよう全力でサポートします。</p>
+      </div>
+
+      <div class="philosophy-card fade-in">
+        <div class="philosophy-num">02</div>
+        <div class="philosophy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        </div>
+        <div class="philosophy-title">社会貢献</div>
+        <p class="philosophy-body">地域の人々に信頼され、愛されるクリニックであり続けること。地域医療を支えることが、私たちの社会への責任だと考えています。</p>
+      </div>
+
+      <div class="philosophy-card fade-in">
+        <div class="philosophy-num">03</div>
+        <div class="philosophy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="philosophy-title">スタッフの成長</div>
+        <p class="philosophy-body">スタッフが互いに協力し、常に学び成長し続けることで、患者様との間に良い循環が生まれる。そんなチームでありたいと思っています。</p>
+      </div>
+
+    </div>
+    <div class="philosophy-quote fade-in">
+      <div class="philosophy-quote-mark">&ldquo;</div>
+      <p class="philosophy-quote-text">
+        3つの理念を常に忘れずに、日々努力し続けていきたいと思っています。<br>
+        どうぞよろしくお願い申し上げます。<br>
+        <span style="color:rgba(255,255,255,0.35); font-size:12px; margin-top:8px; display:block;">— 院長　渡邊 慶史</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CLINIC FEATURES -->
+<section class="clinic-features-section">
+  <div class="sec-inner">
+    <div class="sec-label fade-in">Our Features</div>
+    <h2 class="sec-title fade-in">当院の9つの特徴</h2>
+
+    <!-- グループ1: アクセス・利便性 -->
+    <details class="features-group fade-in" open>
+      <summary class="features-group-header">
+        <div class="fg-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+        </div>
+        <span class="fg-title">アクセス・利便性</span>
+        <span class="fg-count">3つの特徴</span>
+        <svg class="fg-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="features-group-body">
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 01</div>
+          <div class="fg-item-title">抜群のアクセス</div>
+          <p class="fg-item-body">東武東上線・越生線 坂戸駅南口より徒歩1分。関越道 坂戸鶴ヶ島ICより3分。駐車場11台・駐輪場も完備。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 02</div>
+          <div class="fg-item-title">土・日・祝日も診療</div>
+          <p class="fg-item-body">平日に休めない方も安心。日曜・祝日は午前のみ診療。月曜（祝日含む）のみ休診です。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 03</div>
+          <div class="fg-item-title">男女別待合室</div>
+          <p class="fg-item-body">女性が受診しやすい環境を整えるため、待合室を男女別に設置。デリケートな受診もご安心ください。</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- グループ2: 女性専門診療 -->
+    <details class="features-group fade-in">
+      <summary class="features-group-header">
+        <div class="fg-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197"/></svg>
+        </div>
+        <span class="fg-title">女性の健康をサポート</span>
+        <span class="fg-count">2つの特徴</span>
+        <svg class="fg-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="features-group-body">
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 04</div>
+          <div class="fg-item-title">女性医師による産婦人科診療</div>
+          <p class="fg-item-body">産婦人科診療・子宮がん検診は副院長（女性医師）が担当。不安な気持ちに寄り添いながら、丁寧に診察します。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 05</div>
+          <div class="fg-item-title">乳がん検診・精密検査</div>
+          <p class="fg-item-body">マンモグラフィーは女性スタッフが担当。乳腺外科（院長）による検診・針生検など精密検査まで一貫対応。</p>
+        </div>
+        <div class="fg-item" style="background:var(--gray-50); border-right:none;">
+          <p class="fg-item-body" style="color:var(--gray-400); font-size:11px; margin:auto 0;">坂戸市・鶴ヶ島市の市の検診にも対応しています。</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- グループ3: 専門医療・手術 -->
+    <details class="features-group fade-in">
+      <summary class="features-group-header">
+        <div class="fg-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        </div>
+        <span class="fg-title">専門医療・日帰り手術</span>
+        <span class="fg-count">4つの特徴</span>
+        <svg class="fg-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="features-group-body">
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 06</div>
+          <div class="fg-item-title">C型肝炎の専門治療</div>
+          <p class="fg-item-body">院長は肝臓専門医。C型肝炎は2〜3ヶ月の内服のみで約9割が治癒。専門医だから受けられる治療です。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 07</div>
+          <div class="fg-item-title">苦痛の少ない経鼻内視鏡</div>
+          <p class="fg-item-body">極細・柔らかいファイバーで苦痛を最小限に。レーザー光搭載の富士フィルム最新機種で微細な病変も見逃しません。静脈麻酔も選択可能。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 08</div>
+          <div class="fg-item-title">切らずに治す内痔核（ジオン注）</div>
+          <p class="fg-item-body">注射で内痔核を固定する硬化療法。ほぼ無痛・20〜30分・保険適用。「手術は怖い」という方にまずご相談ください。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 09</div>
+          <div class="fg-item-title">日帰り手術対応</div>
+          <p class="fg-item-body">痔核・裂肛・痔瘻・乳房良性腫瘍・巻き爪など、多くの手術を日帰りで実施。3割負担で約2万円〜。</p>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</section>
+
 <!-- DEPT NAVIGATOR -->
 <section class="dept-nav-section" id="depts">
   <div class="sec-inner">
@@ -1049,55 +1400,55 @@ footer {
             <thead>
               <tr>
                 <th class="row-label"></th>
+                <th class="closed-day">月</th>
                 <th>火</th>
                 <th>水</th>
                 <th>木</th>
                 <th>金</th>
                 <th>土</th>
                 <th>日・祝</th>
-                <th class="closed-day">月</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="row-label">午前<br>9:00–12:00</td>
-                <td class="mark-ok">◎</td>
-                <td class="mark-ok">◎</td>
-                <td class="mark-ok">◎</td>
-                <td class="mark-ok">◎</td>
-                <td class="mark-ok">◎</td>
-                <td class="mark-ok">◎</td>
                 <td class="mark-no closed-day">―</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-ok">◎</td>
               </tr>
               <tr>
                 <td class="row-label">午後<br>15:00–18:00</td>
+                <td class="mark-no closed-day">―</td>
                 <td class="mark-ok">◎</td>
                 <td class="mark-ok">◎</td>
                 <td class="mark-ok">◎</td>
                 <td class="mark-ok">◎</td>
                 <td class="mark-ok">◎</td>
                 <td class="mark-no">―</td>
-                <td class="mark-no closed-day">―</td>
               </tr>
               <tr>
                 <td class="row-label">婦人科<br>午前</td>
+                <td class="mark-no closed-day">―</td>
                 <td class="mark-ok">◎</td>
                 <td class="mark-half">△</td>
                 <td class="mark-ok">◎</td>
                 <td class="mark-half">△</td>
                 <td class="mark-half">☆</td>
                 <td class="mark-no">―</td>
-                <td class="mark-no closed-day">―</td>
               </tr>
               <tr>
                 <td class="row-label">婦人科<br>午後</td>
+                <td class="mark-no closed-day">―</td>
                 <td class="mark-ok">◎</td>
                 <td class="mark-no">―</td>
                 <td class="mark-ok">◎</td>
                 <td class="mark-no">―</td>
                 <td class="mark-half">☆</td>
                 <td class="mark-no">―</td>
-                <td class="mark-no closed-day">―</td>
               </tr>
             </tbody>
           </table>
