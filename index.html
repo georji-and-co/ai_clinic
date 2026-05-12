@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ai clinic（アイクリニック）| 坂戸駅南口すぐ・土日祝診療</title>
+<meta name="description" content="坂戸駅南口より徒歩1分。消化器・乳腺・婦人科・肛門科・内科・皮膚科。土日祝日も診療。男女別待合室あり。WEB予約対応。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+p, li, dd, dt, td, th, span {
+  word-break: normal;
+}
+
+:root {
+  --teal:       #0d6068;
+  --teal-dark:  #094a51;
+  --teal-light: #e6f4f5;
+  --teal-mid:   #c2e4e7;
+  --accent:     #d4a24c;
+  --accent-lt:  #fdf3e1;
+  --white:      #f8fafa;
+  --gray-50:    #f2f4f4;
+  --gray-100:   #e0e5e5;
+  --gray-400:   #8a9e9f;
+  --gray-600:   #4a6566;
+  --gray-800:   #1e3435;
+  --text:       #1e3435;
+  --font-min:   'Shippori Mincho', serif;
+  --font-sans:  'Noto Sans JP', sans-serif;
+  --header-h:   64px;
+  --status-h:   42px;
+  --offset:     calc(var(--header-h) + var(--status-h));
+  --r:          6px;
+  --shadow:     0 2px 20px rgba(13,96,104,0.10);
+  --shadow-lg:  0 8px 40px rgba(13,96,104,0.15);
+}
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* ===== STATUS BAR ===== */
+#status-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--status-h);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  transition: background 0.4s, color 0.4s;
+}
+#status-bar.is-open   { background: #1a7a63; color: #fff; }
+#status-bar.is-lunch  { background: #b8822a; color: #fff; }
+#status-bar.is-closed { background: #5a6e6e; color: #e0e9e9; }
+.status-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: currentColor; opacity: 0.85;
+  flex-shrink: 0;
+}
+.is-open .status-dot   { animation: blink 1.6s infinite; }
+.is-lunch .status-dot  { animation: blink 0.8s infinite; }
+@keyframes blink { 0%,100%{opacity:0.9} 50%{opacity:0.3} }
+
+/* ===== HEADER ===== */
+header {
+  position: fixed;
+  top: var(--status-h); left: 0; right: 0;
+  height: var(--header-h);
+  background: #fff;
+  border-bottom: 1px solid var(--gray-100);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-shadow: 0 1px 12px rgba(13,96,104,0.07);
+}
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+.logo-en {
+  font-family: var(--font-min);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.logo-ja {
+  font-size: 11px;
+  color: var(--gray-400);
+  white-space: nowrap;
+}
+nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+nav a {
+  font-size: 12px;
+  color: var(--gray-600);
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+nav a:hover { background: var(--teal-light); color: var(--teal); }
+.btn-reserve-hd {
+  background: var(--teal);
+  color: #fff !important;
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  transition: background 0.2s !important;
+  white-space: nowrap;
+}
+.btn-reserve-hd:hover { background: var(--teal-dark) !important; }
+
+/* ===== MAIN OFFSET ===== */
+main { padding-top: var(--offset); }
+
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 60%, #1a8a96 100%);
+  color: #fff;
+  padding: 72px 24px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 10% 90%, rgba(212,162,76,0.12) 0%, transparent 60%);
+}
+.hero-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+}
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #7de8a0;
+  animation: blink 1.6s infinite;
+}
+.hero h1 {
+  font-family: var(--font-min);
+  font-size: clamp(26px, 5vw, 42px);
+  font-weight: 700;
+  line-height: 1.45;
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+}
+.hero-sub {
+  font-size: 15px;
+  opacity: 0.85;
+  max-width: 540px;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(212,162,76,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,162,76,0.45); }
+.btn-tel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.btn-tel:hover { background: rgba(255,255,255,0.22); }
+.hero-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 36px;
+}
+.hero-chip {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+}
+
+/* ===== SECTION BASE ===== */
+section { padding: 64px 24px; }
+.sec-inner { max-width: 960px; margin: 0 auto; }
+.sec-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.sec-title {
+  font-family: var(--font-min);
+  font-size: clamp(20px, 3.5vw, 30px);
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 36px;
+  line-height: 1.4;
+}
+
+/* ===== STICKY CTA ===== */
+.sticky-cta {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 150;
+  background: #fff;
+  border-top: 1px solid var(--gray-100);
+  padding: 8px 16px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 -4px 20px rgba(13,96,104,0.10);
+}
+.sticky-status {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 4px;
+  line-height: 1;
+}
+.sticky-status.is-open   { background: #e6f5ee; color: #1a7a63; display: flex; }
+.sticky-status.is-lunch  { background: #fdf3e1; color: #b8822a; display: flex; }
+.sticky-status.is-closed { background: var(--gray-50); color: var(--gray-600); display: flex; }
+.sticky-status-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: currentColor; opacity: 0.8; flex-shrink: 0;
+}
+.is-open .sticky-status-dot { animation: blink 1.6s infinite; }
+.sticky-cta-btns {
+  display: flex;
+  gap: 8px;
+}
+.sticky-cta .btn-web {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--teal);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 10px;
+  border-radius: var(--r);
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.sticky-cta .btn-web:hover { background: var(--teal-dark); }
+.sticky-cta .btn-tel-sm {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-100);
+  color: var(--gray-800);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 10px;
+  border-radius: var(--r);
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.sticky-cta .btn-tel-sm:hover { background: var(--gray-100); }
+.sticky-cta svg { overflow: visible; flex-shrink: 0; }
+
+/* ===== DEPT NAVIGATOR (重要) ===== */
+.dept-nav-section {
+  background: var(--gray-50);
+  border-top: 3px solid var(--teal-light);
+}
+.dept-intro {
+  font-size: 14px;
+  color: var(--gray-600);
+  margin-bottom: 28px;
+}
+.dept-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.dept-card {
+  background: #fff;
+  border: 1px solid var(--gray-100);
+  border-radius: 10px;
+  padding: 20px 16px;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.dept-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--teal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s;
+}
+.dept-card:hover { border-color: var(--teal-mid); box-shadow: var(--shadow); transform: translateY(-2px); }
+.dept-card:hover::before { transform: scaleX(1); }
+.dept-icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--teal-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.dept-icon svg {
+  width: 22px; height: 22px;
+  color: var(--teal);
+}
+.dept-name {
+  font-family: var(--font-min);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.dept-desc {
+  font-size: 11px;
+  color: var(--gray-400);
+  line-height: 1.5;
+}
+
+/* ===== FEATURES ===== */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.feature-card {
+  background: #fff;
+  border: 1px solid var(--gray-100);
+  border-radius: 12px;
+  padding: 28px 22px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.feature-num {
+  font-family: var(--font-min);
+  font-size: 11px;
+  color: var(--teal);
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+.feature-icon {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  background: var(--teal-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.feature-icon svg { width: 26px; height: 26px; color: var(--teal); }
+.feature-title {
+  font-family: var(--font-min);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.feature-body {
+  font-size: 13px;
+  color: var(--gray-600);
+  line-height: 1.8;
+}
+
+/* ===== SCHEDULE ===== */
+.schedule-section { background: var(--teal-dark); color: #fff; }
+.schedule-section .sec-title { color: #fff; }
+.schedule-section .sec-label { color: var(--teal-mid); }
+.schedule-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.schedule-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 340px;
+}
+.schedule-table th, .schedule-table td {
+  text-align: center;
+  padding: 10px 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.schedule-table th {
+  background: rgba(255,255,255,0.1);
+  font-weight: 600;
+  font-size: 12px;
+}
+.schedule-table .row-label {
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  white-space: nowrap;
+  background: rgba(255,255,255,0.05);
+  padding-left: 12px;
+}
+.mark-ok   { color: #6de8a8; font-weight: 700; font-size: 16px; }
+.mark-half { color: var(--accent); font-weight: 700; }
+.mark-no   { color: rgba(255,255,255,0.3); }
+.closed-day { background: rgba(255,255,255,0.04); }
+.schedule-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.note-box {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+.note-box h4 {
+  font-family: var(--font-min);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--teal-mid);
+}
+.note-box p {
+  font-size: 12px;
+  opacity: 0.8;
+  line-height: 1.7;
+}
+.reserve-box {
+  background: var(--accent);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.reserve-box h4 {
+  font-family: var(--font-min);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.btn-reserve-lg {
+  display: block;
+  background: #fff;
+  color: var(--teal-dark);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 13px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: opacity 0.2s;
+}
+.btn-reserve-lg:hover { opacity: 0.9; }
+.reserve-tel {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-top: 6px;
+}
+
+/* ===== DOCTORS ===== */
+.doctors-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.doctor-card {
+  background: #fff;
+  border: 1px solid var(--gray-100);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.doctor-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--teal-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.doctor-avatar svg { width: 36px; height: 36px; color: var(--teal); }
+.doctor-role {
+  font-size: 11px;
+  color: var(--teal);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+.doctor-name {
+  font-family: var(--font-min);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.doctor-dept {
+  font-size: 12px;
+  color: var(--gray-600);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.doctor-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.doctor-tag {
+  background: var(--teal-light);
+  color: var(--teal);
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+/* ===== ACCESS ===== */
+.access-section { background: var(--gray-50); }
+.access-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.access-map {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  aspect-ratio: 4/3;
+  background: var(--teal-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.access-map iframe {
+  width: 100%; height: 100%; border: 0;
+}
+.access-info { display: flex; flex-direction: column; gap: 20px; }
+.access-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.access-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--teal-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.access-icon svg { width: 20px; height: 20px; color: var(--teal); }
+.access-item h4 {
+  font-family: var(--font-min);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--teal-dark);
+}
+.access-item p { font-size: 13px; color: var(--gray-600); line-height: 1.7; }
+.highlight-box {
+  background: var(--teal-light);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 16px;
+}
+.highlight-box p { font-size: 13px; color: var(--teal-dark); font-weight: 500; line-height: 1.7; }
+
+/* ===== NOTICE ===== */
+.notice-section { background: var(--accent-lt); }
+.notice-box {
+  background: #fff;
+  border: 1px solid #e5d0a5;
+  border-radius: 10px;
+  padding: 20px 24px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.notice-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--accent-lt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.notice-icon svg { width: 18px; height: 18px; color: var(--accent); }
+.notice-box h4 {
+  font-family: var(--font-min);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--gray-800);
+}
+.notice-box p { font-size: 13px; color: var(--gray-600); line-height: 1.7; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--gray-800);
+  color: rgba(255,255,255,0.65);
+  padding: 40px 24px 100px;
+}
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.footer-logo {
+  font-family: var(--font-min);
+  font-size: 20px;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.footer-sub { font-size: 12px; line-height: 1.7; }
+.footer-copy {
+  font-size: 11px;
+  text-align: center;
+  margin-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== RESPONSIVE ===== */
+/* sticky-ctaのbtns wrapper */
+.sticky-cta-btns { display: flex; gap: 8px; }
+
+/* sticky-statusはSPのみ表示 */
+@media (min-width: 768px) {
+  .sticky-status { display: none !important; }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-h: 56px;
+    --status-h: 38px;
+  }
+  nav a:not(.btn-reserve-hd) { display: none; }
+  .dept-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .features-grid { grid-template-columns: 1fr; gap: 14px; }
+  .schedule-wrap { grid-template-columns: 1fr; }
+  .doctors-grid { grid-template-columns: 1fr; }
+  .access-grid { grid-template-columns: 1fr; }
+  .doctor-card { flex-direction: column; gap: 14px; }
+  footer { padding-bottom: 80px; }
+  .hero { padding: 48px 20px 52px; }
+  .hero-cta { flex-direction: column; align-items: flex-start; }
+  .btn-primary, .btn-tel { width: 100%; justify-content: center; }
+  section { padding: 48px 20px; }
+}
+@media (max-width: 400px) {
+  .dept-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+</style>
+</head>
+<body>
+
+<!-- STATUS BAR -->
+<div id="status-bar">
+  <span class="status-dot"></span>
+  <span id="status-text">診療時間を確認中…</span>
+</div>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#">
+    <span class="logo-en">Ai clinic</span>
+    <span class="logo-ja">アイクリニック</span>
+  </a>
+  <nav>
+    <a href="#depts">診療科目</a>
+    <a href="#schedule">診療時間</a>
+    <a href="#doctors">医師紹介</a>
+    <a href="#access">アクセス</a>
+    <a href="https://ssc3.doctorqube.com/ai_clinic/" target="_blank" rel="noopener" class="btn-reserve-hd">WEB予約</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" style="padding-bottom:64px">
+  <div class="hero-inner">
+    <div class="hero-badge">坂戸駅南口 徒歩1分</div>
+    <h1>消化器・乳腺・婦人科・内科。<br>土日も、地域のそばに。</h1>
+    <p class="hero-sub">
+      専門医が複数在籍し、消化器から婦人科まで幅広く対応。<br>
+      男女別待合室で、受診しにくかった科にも安心して来院できます。
+    </p>
+    <div class="hero-cta">
+      <a href="https://ssc3.doctorqube.com/ai_clinic/" target="_blank" rel="noopener" class="btn-primary">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        WEB予約（24時間受付）
+      </a>
+      <a href="tel:049-285-8181" class="btn-tel">
+        <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.37 2 2 0 013.61 1.21h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.9a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        電話で問い合わせる
+      </a>
+    </div>
+    <div class="hero-features">
+      <span class="hero-chip">🕐 土日祝も診療</span>
+      <span class="hero-chip">🚉 坂戸駅南口1分</span>
+      <span class="hero-chip">🚗 駐車場11台</span>
+      <span class="hero-chip">👩 男女別待合室</span>
+      <span class="hero-chip">💉 日帰り手術対応</span>
+    </div>
+  </div>
+</section>
+
+<!-- DEPT NAVIGATOR -->
+<section class="dept-nav-section" id="depts">
+  <div class="sec-inner">
+    <div class="sec-label fade-in">Departments</div>
+    <h2 class="sec-title fade-in">どの科に行けばいいか迷ったら</h2>
+    <p class="dept-intro fade-in">症状や気になることから、診療科をお選びください。</p>
+    <div class="dept-grid">
+
+      <a href="#dept-shokaki" class="dept-card fade-in">
+        <div class="dept-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="12" rx="7" ry="9"/><path stroke-linecap="round" d="M9 8c1 1.5 4 1.5 5 0M9 16c1-1.5 4-1.5 5 0"/></svg>
+        </div>
+        <div class="dept-name">消化器内科・外科</div>
+        <div class="dept-desc">胃の不調・胃カメラ・肝炎・便秘・下痢</div>
+      </a>
+
+      <a href="#dept-nyusen" class="dept-card fade-in">
+        <div class="dept-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="11" r="6"/><path stroke-linecap="round" d="M12 5v2M12 15v2M6 11H4M20 11h-2"/></svg>
+        </div>
+        <div class="dept-name">乳腺外科</div>
+        <div class="dept-desc">乳がん検診・マンモグラフィー・しこり</div>
+      </a>
+
+      <a href="#dept-fujinka" class="dept-card fade-in">
+        <div class="dept-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M12 3c0 0-5 3-5 9s5 9 5 9 5-3 5-9-5-9-5-9z"/><path stroke-linecap="round" d="M12 12h4"/></svg>
+        </div>
+        <div class="dept-name">婦人科・産婦人科</div>
+        <div class="dept-desc">生理の異常・子宮がん検診・更年期・ピル</div>
+      </a>
+
+      <a href="#dept-komonka" class="dept-card fade-in">
+        <div class="dept-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M12 21V12m0 0c-2-3-5-4-7-3M12 12c2-3 5-4 7-3"/><circle cx="12" cy="7" r="3"/></svg>
+        </div>
+        <div class="dept-name">肛門科</div>
+        <div class="dept-desc">痔・裂肛・日帰り手術・注射療法</div>
+      </a>
+
+      <a href="#dept-naika" class="dept-card fade-in">
+        <div class="dept-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M12 2a5 5 0 015 5v2a5 5 0 01-10 0V7a5 5 0 015-5z"/><path stroke-linecap="round" d="M7 14s-3 1-3 4v1h16v-1c0-3-3-4-3-4"/></svg>
+        </div>
+        <div class="dept-name">一般内科</div>
+        <div class="dept-desc">発熱・風邪・高血圧・頭痛・めまい</div>
+      </a>
+
+      <a href="#dept-hifuka" class="dept-card fade-in">
+        <div class="dept-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="8"/><path stroke-linecap="round" d="M8 12h8M12 8v8"/></svg>
+        </div>
+        <div class="dept-name">皮膚科</div>
+        <div class="dept-desc">湿疹・ニキビ・イボ・粉瘤・帯状疱疹</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- DEPT DETAIL (消化器) -->
+<section id="dept-shokaki" style="padding:56px 24px; background:#fff;">
+  <div class="sec-inner">
+    <div class="sec-label fade-in">Gastroenterology</div>
+    <h2 class="sec-title fade-in">消化器内科・外科 / 肝炎治療</h2>
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        </div>
+        <div class="feature-title">苦痛の少ない経鼻内視鏡（胃カメラ）</div>
+        <p class="feature-body">極細・柔らかいファイバーで苦痛を最小限に。富士フィルムのレーザー光搭載最新機種で、わずかな病変も見逃しません。静脈麻酔（寝ている間の検査）も選択可能です。</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </div>
+        <div class="feature-title">C型肝炎の内服治療</div>
+        <p class="feature-body">院長は肝臓専門医。C型肝炎は2〜3ヶ月の内服治療のみで約9割がウイルス除去に成功。放置せず、まずはご相談を。</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="feature-title">こんな症状に対応</div>
+        <p class="feature-body">胃の不調・食欲不振・胸焼け・黒色便・便潜血陽性・ピロリ菌検査・腹部の張り・体重減少・倦怠感など。健診異常の方もお気軽に。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPT DETAIL (乳腺) -->
+<section id="dept-nyusen" style="padding:56px 24px; background:var(--gray-50);">
+  <div class="sec-inner">
+    <div class="sec-label fade-in">Breast Surgery</div>
+    <h2 class="sec-title fade-in">乳腺外科・乳がん検診</h2>
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+        </div>
+        <div class="feature-title">マンモグラフィー・乳腺エコー</div>
+        <p class="feature-body">マンモグラフィー検査は女性スタッフが担当。市の乳がん検診にも対応しています（坂戸市・鶴ヶ島市）。</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="feature-title">良性腫瘍の日帰り手術</div>
+        <p class="feature-body">局所麻酔で切除可能な良性腫瘍は当院で対応。万一悪性と診断された場合は、信頼できる専門医療機関にご紹介します。</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>
+        </div>
+        <div class="feature-title">こんな症状に対応</div>
+        <p class="feature-body">しこり・変形・引きつれ・乳首からの分泌物・痛み・痒みなど。気になることは何でもご相談ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPT DETAIL (婦人科) -->
+<section id="dept-fujinka" style="padding:56px 24px; background:#fff;">
+  <div class="sec-inner">
+    <div class="sec-label fade-in">Gynecology</div>
+    <h2 class="sec-title fade-in">婦人科・産婦人科</h2>
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197"/></svg>
+        </div>
+        <div class="feature-title">女性医師による診察</div>
+        <p class="feature-body">副院長（渡邊禎子医師）が担当。不安や恥ずかしさを感じやすい婦人科診察も、女性医師が丁寧に寄り添います。</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2"/></svg>
+        </div>
+        <div class="feature-title">子宮がん検診・各種検査</div>
+        <p class="feature-body">子宮頸がん・体がん検診、超音波検査、HPV検査、コルポスコピーに対応。坂戸市・鶴ヶ島市の市検診も可。</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+        </div>
+        <div class="feature-title">ピル・不妊・更年期相談</div>
+        <p class="feature-body">避妊・緊急避妊・月経コントロール目的のピル処方、不妊相談（タイミング療法）、更年期症状のご相談まで幅広く対応。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPT DETAIL (肛門科) -->
+<section id="dept-komonka" style="padding:56px 24px; background:var(--gray-50);">
+  <div class="sec-inner">
+    <div class="sec-label fade-in">Proctology</div>
+    <h2 class="sec-title fade-in">肛門科・日帰り手術</h2>
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h7"/></svg>
+        </div>
+        <div class="feature-title">切らずに治す内痔核（ジオン注）</div>
+        <p class="feature-body">注射で内痔核を硬化・固定する治療法。ほぼ無痛で20〜30分程度。保険診療で受けられます。手術が怖い方はまずご相談を。</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="feature-title">日帰り手術（局所＋静脈麻酔）</div>
+        <p class="feature-body">内痔核・裂肛・痔瘻の手術を日帰りで実施。費用は3割負担で約2万円。翌日からシャワー・入浴も可能です。</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M7 8h10M7 12h4"/></svg>
+        </div>
+        <div class="feature-title">こんな症状に対応</div>
+        <p class="feature-body">出血・脱出・腫れ・痛み・痒み・便漏れ。「恥ずかしくて受診できなかった」方でも安心してご相談いただける環境を整えています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPT (内科・皮膚科) -->
+<section id="dept-naika" style="padding:56px 24px; background:#fff;">
+  <div class="sec-inner">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;" class="responsive-2col">
+      <div id="dept-naika-inner">
+        <div class="sec-label fade-in">General Medicine</div>
+        <h2 class="sec-title fade-in" style="font-size:22px;">一般内科</h2>
+        <div class="feature-card fade-in">
+          <p class="feature-body">発熱・咳・風邪・インフルエンザ・食欲不振・腹痛・下痢・便秘・高血圧・高脂血症・動悸・息切れ・めまい・頭痛・腰痛・下肢静脈瘤など、幅広く対応します。<br><br>
+          <strong>※発熱での来院は、事前にお電話をお願いします。</strong></p>
+        </div>
+      </div>
+      <div id="dept-hifuka">
+        <div class="sec-label fade-in">Dermatology</div>
+        <h2 class="sec-title fade-in" style="font-size:22px;">皮膚科</h2>
+        <div class="feature-card fade-in">
+          <p class="feature-body">湿疹・ニキビ・蕁麻疹・アレルギー疹・水虫・火傷・帯状疱疹・水いぼ・イボの凍結療法（除く）・粉瘤・脂肪腫の切除など。<br><br>
+          専門医ではないため対応困難な場合は速やかに皮膚科専門医療機関へご紹介します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="schedule-section" id="schedule">
+  <div class="sec-inner">
+    <div class="sec-label fade-in">Hours</div>
+    <h2 class="sec-title fade-in">診療時間・予約</h2>
+    <div class="schedule-wrap">
+      <div>
+        <div class="schedule-table-wrap fade-in">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th class="row-label"></th>
+                <th>火</th>
+                <th>水</th>
+                <th>木</th>
+                <th>金</th>
+                <th>土</th>
+                <th>日・祝</th>
+                <th class="closed-day">月</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="row-label">午前<br>9:00–12:00</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-no closed-day">―</td>
+              </tr>
+              <tr>
+                <td class="row-label">午後<br>15:00–18:00</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-no">―</td>
+                <td class="mark-no closed-day">―</td>
+              </tr>
+              <tr>
+                <td class="row-label">婦人科<br>午前</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-half">△</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-half">△</td>
+                <td class="mark-half">☆</td>
+                <td class="mark-no">―</td>
+                <td class="mark-no closed-day">―</td>
+              </tr>
+              <tr>
+                <td class="row-label">婦人科<br>午後</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-no">―</td>
+                <td class="mark-ok">◎</td>
+                <td class="mark-no">―</td>
+                <td class="mark-half">☆</td>
+                <td class="mark-no">―</td>
+                <td class="mark-no closed-day">―</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:11px; opacity:0.6; margin-top:8px; line-height:1.6;">
+          △＝最終受付10:30まで　☆＝完全予約制（しばらくの間）<br>
+          受付時間：8:30〜12:00 / 14:30〜18:00
+        </p>
+      </div>
+      <div class="schedule-notes fade-in">
+        <div class="note-box">
+          <h4>🗓 日曜・祝日は午前のみ</h4>
+          <p>平日お休みが取れない方も、土日祝に受診できます。月曜日（祝日含む）は休診です。</p>
+        </div>
+        <div class="note-box">
+          <h4>📋 予約について</h4>
+          <p>完全予約制ではありませんが、予約の方が優先されます。胃カメラ・マンモグラフィー・超音波検査などは電話予約をお願いします。</p>
+        </div>
+        <div class="reserve-box">
+          <h4>WEB予約（24時間受付）</h4>
+          <a href="https://ssc3.doctorqube.com/ai_clinic/" target="_blank" rel="noopener" class="btn-reserve-lg">今すぐWEB予約する</a>
+          <p style="font-size:12px; opacity:0.85;">お電話でも受付しています</p>
+          <a href="tel:049-285-8181" class="reserve-tel">049-285-8181</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTORS -->
+<section id="doctors" style="background:#fff;">
+  <div class="sec-inner">
+    <div class="sec-label fade-in">Our Doctors</div>
+    <h2 class="sec-title fade-in">医師紹介</h2>
+    <div class="doctors-grid">
+      <div class="doctor-card fade-in">
+        <div class="doctor-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M12 12a5 5 0 100-10 5 5 0 000 10zM4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <div>
+          <div class="doctor-role">院長</div>
+          <div class="doctor-name">渡邊 慶史 医師</div>
+          <div class="doctor-dept">消化器外科・乳腺外科・肛門科・一般内科・皮膚科</div>
+          <div class="doctor-tags">
+            <span class="doctor-tag">肝臓専門医</span>
+            <span class="doctor-tag">消化器外科</span>
+            <span class="doctor-tag">乳腺外科</span>
+            <span class="doctor-tag">日帰り手術</span>
+          </div>
+        </div>
+      </div>
+      <div class="doctor-card fade-in">
+        <div class="doctor-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M12 12a5 5 0 100-10 5 5 0 000 10zM4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <div>
+          <div class="doctor-role">副院長</div>
+          <div class="doctor-name">渡邊 禎子 医師</div>
+          <div class="doctor-dept">婦人科・産婦人科・抗加齢（アンチエイジング）</div>
+          <div class="doctor-tags">
+            <span class="doctor-tag">女性医師</span>
+            <span class="doctor-tag">産婦人科</span>
+            <span class="doctor-tag">子宮がん検診</span>
+            <span class="doctor-tag">ピル処方</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="access-section" id="access">
+  <div class="sec-inner">
+    <div class="sec-label fade-in">Access</div>
+    <h2 class="sec-title fade-in">アクセス・場所</h2>
+    <div class="access-grid">
+      <div class="access-map fade-in">
+        <iframe
+          src="https://maps.google.com/maps?q=Ai+clinic+%E3%82%A2%E3%82%A4%E3%82%AF%E3%83%AA%E3%83%8B%E3%83%83%E3%82%AF+%E5%9D%82%E6%88%B8%E5%B8%82+%E5%85%83%E7%94%BA&output=embed&hl=ja"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ai clinicの地図">
+        </iframe>
+      </div>
+      <div class="access-info fade-in">
+        <div class="access-item">
+          <div class="access-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+          </div>
+          <div>
+            <h4>住所</h4>
+            <p>〒350-0023<br>埼玉県坂戸市元町15-5（中澤メディカルモール）</p>
+          </div>
+        </div>
+        <div class="access-item">
+          <div class="access-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+          </div>
+          <div>
+            <h4>電車でお越しの方</h4>
+            <p>東武東上線・越生線 <strong>坂戸駅 南口より徒歩1分</strong><br>関越自動車道 坂戸鶴ヶ島ICより車で約3分</p>
+          </div>
+        </div>
+        <div class="access-item">
+          <div class="access-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3m-7 14H9a2 2 0 01-2-2v-6a2 2 0 012-2h8a2 2 0 012 2v3.5"/><circle cx="16" cy="18" r="2"/><circle cx="6" cy="18" r="2"/></svg>
+          </div>
+          <div>
+            <h4>お車でお越しの方</h4>
+            <p>駐車場 <strong>11台</strong> 完備（無料）<br>駐輪場あり / 近隣コインパーキングもご利用可</p>
+          </div>
+        </div>
+        <div class="highlight-box">
+          <p>📞 電話番号：<strong>049-285-8181</strong><br>
+          受付時間：8:30〜12:00 / 14:30〜18:00</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTICE -->
+<section class="notice-section">
+  <div class="sec-inner">
+    <div class="sec-label fade-in">Notice</div>
+    <h2 class="sec-title fade-in">お知らせ・ご来院前に</h2>
+    <div class="notice-box fade-in">
+      <div class="notice-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+      </div>
+      <div>
+        <h4>発熱でご来院の方へ</h4>
+        <p>当院は設備上、発熱外来は行っておりません。発熱症状がある場合は、来院前に必ずお電話ください。</p>
+      </div>
+    </div>
+    <div class="notice-box fade-in">
+      <div class="notice-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path stroke-linecap="round" d="M16 2v4M8 2v4M3 10h18"/></svg>
+      </div>
+      <div>
+        <h4>婦人科の休診・予約のみ診療について</h4>
+        <p>婦人科は諸事情により休診日が増えております。特に土曜日はしばらくの間、ご予約の方のみの診療となります。最新情報はお電話にてご確認ください。</p>
+      </div>
+    </div>
+    <div class="notice-box fade-in">
+      <div class="notice-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+      </div>
+      <div>
+        <h4>胃カメラ・マンモグラフィーは電話予約</h4>
+        <p>胃カメラ・マンモグラフィー・超音波（エコー）・各種健康診断はWEB予約対象外です。診療時間内（9〜12時・15〜18時）にお電話にてご予約ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Ai clinic</div>
+      <p class="footer-sub">〒350-0023 埼玉県坂戸市元町15-5<br>中澤メディカルモール<br>TEL: 049-285-8181</p>
+    </div>
+    <div style="font-size:12px; line-height:2.2;">
+      <a href="#depts" style="color:inherit; text-decoration:none; display:block;">診療科目</a>
+      <a href="#schedule" style="color:inherit; text-decoration:none; display:block;">診療時間</a>
+      <a href="#doctors" style="color:inherit; text-decoration:none; display:block;">医師紹介</a>
+      <a href="#access" style="color:inherit; text-decoration:none; display:block;">アクセス</a>
+      <a href="https://ssc3.doctorqube.com/ai_clinic/" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:none; display:block; font-weight:600;">WEB予約</a>
+    </div>
+  </div>
+  <p class="footer-copy">© Ai clinic（アイクリニック）All rights reserved.</p>
+</footer>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta">
+  <div id="sticky-status" class="sticky-status">
+    <span class="sticky-status-dot"></span>
+    <span id="sticky-status-text"></span>
+  </div>
+  <div class="sticky-cta-btns">
+    <a href="https://ssc3.doctorqube.com/ai_clinic/" target="_blank" rel="noopener" class="btn-web">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" style="overflow:visible;"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      WEB予約
+    </a>
+    <a href="tel:049-285-8181" class="btn-tel-sm">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" style="overflow:visible;"><path stroke-linecap="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 01 1.61 3.37 2 2 0 013.61 1.21h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.9a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      電話する
+    </a>
+  </div>
+</div>
+
+<script>
+// ===== STATUS BAR =====
+function setStatus(cls, msg, shortMsg) {
+  const bar = document.getElementById('status-bar');
+  const text = document.getElementById('status-text');
+  const ss = document.getElementById('sticky-status');
+  const st = document.getElementById('sticky-status-text');
+  bar.className = cls;
+  text.textContent = msg;
+  if (ss) { ss.className = 'sticky-status ' + cls; }
+  if (st) { st.textContent = shortMsg || msg; }
+}
+function updateStatus() {
+  const now = new Date();
+  const day = now.getDay();
+  const h = now.getHours();
+  const m = now.getMinutes();
+  const t = h * 60 + m;
+
+  const AM_START = 9*60, AM_END = 12*60;
+  const PM_START = 15*60, PM_END = 18*60;
+  const LUNCH_START = 12*60, LUNCH_END = 15*60;
+
+  if (day === 1) {
+    setStatus('is-closed', '本日（月曜）は休診日です', '本日休診');
+    return;
+  }
+  const isSunHol = (day === 0);
+  if (isSunHol) {
+    if (t >= AM_START && t < AM_END) {
+      setStatus('is-open', '診療中（午前のみ）— 12:00まで受付', '診療中（午前のみ）');
+    } else {
+      setStatus('is-closed', '本日は午前診療のみ（午後は休診）', '本日午後休診');
+    }
+    return;
+  }
+  if (t >= AM_START && t < AM_END) {
+    setStatus('is-open', '午前診療受付中 — 12:00まで', '診療受付中');
+  } else if (t >= LUNCH_START && t < LUNCH_END) {
+    setStatus('is-lunch', '休憩中（昼休み）— 午後受付は 14:30〜', '昼休み中');
+  } else if (t >= PM_START && t < PM_END) {
+    setStatus('is-open', '午後診療受付中 — 18:00まで', '診療受付中');
+  } else if (t < AM_START) {
+    setStatus('is-closed', '受付前です — 午前受付は 8:30〜', '受付前');
+  } else {
+    setStatus('is-closed', '本日の診療は終了しました', '本日終了');
+  }
+}
+updateStatus();
+setInterval(updateStatus, 60000);
+
+// ===== FADE IN =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 60);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ===== SP 2-col fallback =====
+function checkGrid() {
+  const col = document.querySelector('.responsive-2col');
+  if (col && window.innerWidth < 640) {
+    col.style.gridTemplateColumns = '1fr';
+  } else if (col) {
+    col.style.gridTemplateColumns = '1fr 1fr';
+  }
+}
+checkGrid();
+window.addEventListener('resize', checkGrid);
+</script>
+</body>
+</html>
