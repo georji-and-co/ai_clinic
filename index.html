@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ai clinic（アイクリニック）| 坂戸駅南口すぐ・土日祝診療</title>
-<meta name="description" content="坂戸駅南口・郵便局向かい、徒歩1分。消化器・乳腺・産婦人科・肝疾患・肛門疾患・内科・皮膚科。土日祝も診療。TEL 049-277-5225。">
+<meta name="description" content="埼玉県坂戸市・坂戸駅南口徒歩1分のAi clinic（アイクリニック）。消化器・乳腺・産婦人科・肝疾患・肛門疾患を専門に、胃カメラ・乳がん検診・C型肝炎治療・日帰り手術に対応。土日祝も診療、女性医師による婦人科診療。TEL 049-277-5225。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -44,6 +44,7 @@ p, li, dd, dt, td, th, span {
   --r:          6px;
   --shadow:     0 2px 20px rgba(30,68,120,0.10);
   --shadow-lg:  0 8px 40px rgba(30,68,120,0.14);
+  --sticky-cta-h: 0px;
 }
 
 html { scroll-behavior: smooth; overflow-x: hidden; }
@@ -152,23 +153,27 @@ nav a:hover { background: var(--teal-light); color: var(--teal); }
   position: fixed;
   top: var(--status-h);
   left: 0; right: 0;
-  height: var(--hours-bar-h);
   z-index: 190;
   background: #fff;
   border-bottom: 1px solid var(--gray-100);
   box-shadow: 0 2px 8px rgba(30,68,120,0.06);
 }
 .mobile-hours-inner {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 6px 12px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2px;
+  display: block;
+  padding: 6px 12px 4px;
   text-decoration: none;
   color: inherit;
+}
+.mobile-hours-gyne-link {
+  display: block;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--teal);
+  background: var(--teal-light);
+  padding: 4px 12px 6px;
+  text-decoration: none;
+  border-top: 1px solid var(--gray-100);
 }
 .mobile-hours-row {
   display: flex;
@@ -394,6 +399,97 @@ nav a:hover { background: var(--teal-light); color: var(--teal); }
   line-height: 2;
   max-width: 720px;
 }
+.greeting-sign {
+  margin-top: 20px;
+  font-family: var(--font-min);
+  font-size: 15px;
+  color: var(--gray-800);
+  font-weight: 600;
+  text-align: right;
+}
+
+/* ===== GYNE GUIDE ===== */
+.gyne-guide-section {
+  background: #fff;
+  padding: 56px 24px;
+  border-top: 3px solid var(--accent);
+}
+.gyne-guide-lead {
+  font-size: 13px;
+  color: var(--gray-600);
+  line-height: 1.8;
+  margin-bottom: 24px;
+  max-width: 720px;
+}
+.gyne-guide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.gyne-guide-card {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-100);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+.gyne-guide-card h3 {
+  font-family: var(--font-min);
+  font-size: 15px;
+  color: var(--teal-dark);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gray-100);
+}
+.gyne-guide-card ul {
+  margin: 0;
+  padding-left: 1.1em;
+  font-size: 13px;
+  color: var(--gray-600);
+  line-height: 1.85;
+}
+.gyne-guide-card li { margin-bottom: 6px; }
+.gyne-mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 8px;
+}
+.gyne-mini-table th,
+.gyne-mini-table td {
+  border: 1px solid var(--gray-100);
+  padding: 8px 6px;
+  text-align: center;
+}
+.gyne-mini-table th {
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  font-weight: 600;
+}
+.gyne-mini-table .mark { color: var(--accent); font-weight: 700; }
+.gyne-mini-table .ok { color: var(--teal-dark); font-weight: 700; }
+.gyne-legend {
+  font-size: 12px;
+  color: var(--gray-600);
+  line-height: 1.75;
+  background: var(--accent-lt);
+  border: 1px solid #f0e0a0;
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.gyne-legend strong { color: var(--accent); }
+.gyne-guide-link {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--teal-dark);
+}
+@media (max-width: 767px) {
+  .gyne-guide-grid { grid-template-columns: 1fr; }
+  .fever-banner-inner { flex-direction: column; align-items: stretch; }
+  .fever-banner-tel { text-align: center; }
+}
 
 /* ===== DEPT BACK LINK ===== */
 .dept-back {
@@ -440,10 +536,83 @@ main { padding-top: var(--offset); }
 .hero {
   background: linear-gradient(135deg, var(--teal-dark) 0%, #2a5f9e 55%, #3d7ab8 100%);
   color: #fff;
-  padding: 72px 24px 64px;
+  padding: 72px 24px 80px;
   position: relative;
   overflow: hidden;
 }
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: rgba(255,255,255,0.7);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: color 0.2s;
+  z-index: 2;
+}
+.hero-scroll-hint:hover { color: #fff; }
+.hero-scroll-hint svg {
+  width: 22px; height: 22px;
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+/* ===== FEVER BANNER ===== */
+.fever-banner {
+  background: linear-gradient(90deg, #9e1f24 0%, var(--teal) 100%);
+  color: #fff;
+  padding: 14px 20px;
+  border-bottom: 3px solid #fff;
+  box-shadow: 0 4px 16px rgba(158,31,36,0.25);
+}
+.fever-banner-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+.fever-banner-icon {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.fever-banner-icon svg { width: 20px; height: 20px; }
+.fever-banner-text {
+  flex: 1;
+  min-width: 200px;
+  font-size: 13px;
+  line-height: 1.65;
+  font-weight: 500;
+}
+.fever-banner-text strong { font-size: 14px; display: block; margin-bottom: 2px; }
+.fever-banner-tel {
+  flex-shrink: 0;
+  background: #fff;
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.fever-banner-tel:hover { opacity: 0.92; }
 .hero::before {
   content: '';
   position: absolute;
@@ -1237,7 +1406,8 @@ footer {
   :root {
     --header-h: 56px;
     --status-h: 38px;
-    --hours-bar-h: 54px;
+    --hours-bar-h: 62px;
+    --sticky-cta-h: 78px;
   }
   header {
     top: calc(var(--status-h) + var(--hours-bar-h));
@@ -1251,7 +1421,8 @@ footer {
   .doctors-grid { grid-template-columns: 1fr; }
   .access-grid { grid-template-columns: 1fr; }
   .doctor-card { flex-direction: column; gap: 14px; }
-  footer { padding-bottom: 80px; }
+  footer { padding-bottom: calc(32px + var(--sticky-cta-h)); }
+  .notice-section { padding-bottom: calc(48px + var(--sticky-cta-h)); }
   .hero { padding: 48px 20px 52px; }
   .hero-cta { flex-direction: column; align-items: flex-start; }
   .btn-primary, .btn-tel { width: 100%; justify-content: center; }
@@ -1294,8 +1465,8 @@ footer {
 </div>
 
 <!-- MOBILE: 営業時間常時表示 -->
-<a id="mobile-hours-bar" href="#schedule" aria-label="診療時間の詳細へ">
-  <div class="mobile-hours-inner">
+<div id="mobile-hours-bar">
+  <a href="#schedule" class="mobile-hours-inner" aria-label="診療時間の詳細へ">
     <div class="mobile-hours-row">
       <strong>受付</strong> 8:30–12:00 / 14:30–18:00
       <strong>診療</strong> 9:00–12:00 / 15:00–18:00
@@ -1304,10 +1475,10 @@ footer {
     <div class="mobile-hours-row">
       <span class="mobile-hours-tag">月曜休診</span>
       <span class="mobile-hours-tag">日・祝 午前のみ</span>
-      <span class="mobile-hours-tag">婦人科 水・金午後休</span>
     </div>
-  </div>
-</a>
+  </a>
+  <a href="#gyne-guide" class="mobile-hours-gyne-link">婦人科受診ガイド ›</a>
+</div>
 
 <!-- HEADER -->
 <header>
@@ -1317,6 +1488,7 @@ footer {
   </a>
   <nav class="header-nav" aria-label="メインメニュー">
     <a href="#news">お知らせ</a>
+    <a href="#gyne-guide">婦人科</a>
     <a href="#depts">診療科目</a>
     <a href="#schedule">診療時間</a>
     <a href="#doctors">医師紹介</a>
@@ -1332,6 +1504,7 @@ footer {
 <nav class="nav-drawer" id="nav-drawer" aria-label="モバイルメニュー" aria-hidden="true">
   <p class="nav-drawer-label">MENU</p>
   <a href="#news" class="nav-drawer-link">お知らせ・休診</a>
+  <a href="#gyne-guide" class="nav-drawer-link">婦人科受診ガイド</a>
   <a href="#schedule" class="nav-drawer-link">診療時間</a>
   <a href="#depts" class="nav-drawer-link">診療科目</a>
   <a href="#doctors" class="nav-drawer-link">医師紹介</a>
@@ -1379,23 +1552,31 @@ footer {
       <span class="hero-chip">💉 日帰り手術対応</span>
     </div>
   </div>
+  <a href="#news" class="hero-scroll-hint" aria-label="お知らせへスクロール">
+    <span>下にスクロール</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </a>
 </section>
+
+<!-- 発熱注意（目立つバナー） -->
+<aside class="fever-banner" role="alert" aria-label="発熱での来院に関するお知らせ">
+  <div class="fever-banner-inner">
+    <div class="fever-banner-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+    </div>
+    <p class="fever-banner-text">
+      <strong>発熱でご来院の方へ — 必ずお読みください</strong>
+      当院は設備上、発熱外来は行っておりません。発熱・高熱の症状がある方は、来院前に必ずお電話ください。
+    </p>
+    <a href="tel:049-277-5225" class="fever-banner-tel">電話する</a>
+  </div>
+</aside>
 
 <!-- NEWS / お知らせ（トップ付近） -->
 <section class="news-top-section" id="news">
   <div class="sec-inner">
     <div class="sec-label fade-in">News</div>
     <h2 class="sec-title fade-in" style="margin-bottom:20px;">お知らせ・休診</h2>
-
-    <div class="news-alert fade-in">
-      <h3>発熱でご来院の方へ</h3>
-      <p>当院は設備上、発熱外来は行っておりません。発熱症状がある場合は、来院前に必ずお電話ください（<a href="tel:049-277-5225" style="color:var(--teal); font-weight:700;">049-277-5225</a>）。</p>
-    </div>
-
-    <div class="gyne-quick fade-in">
-      <strong>婦人科のご案内（令和4年4月以降）</strong><br>
-      水・金の午前は最終受付10:30まで。土曜はしばらくの間、ご予約の方のみ（☆）。初診・1年以上未受診の方は、火木土の午前11:00／火木の午後17:00までが最終受付です。休診：月曜、水・金の午後、日曜・祝日。
-    </div>
 
     <details class="news-details fade-in" open>
       <summary>令和8年　休診のお知らせ（タップで一覧） <span style="font-size:11px;color:var(--gray-400);font-weight:400;">最新情報はお電話でもご確認ください</span></summary>
@@ -1428,6 +1609,7 @@ footer {
     <div class="sec-label">Greeting</div>
     <h2 class="sec-title" style="font-size:22px; margin-bottom:16px;">ごあいさつ</h2>
     <p class="greeting-text">坂戸駅南口に、消化器、乳腺、婦人科、肝疾患、肛門疾患を専門としたクリニックを開院することになりました。質の高い医療を慈愛の心で丁寧に行うことで、一人でも多くの患者様が、気持ちが癒され、安心し、明るく元気になるお手伝いができればと思います。どうぞよろしくお願い申し上げます。</p>
+    <p class="greeting-sign">院長　渡邊 慶史</p>
   </div>
 </section>
 
@@ -1715,6 +1897,9 @@ footer {
   <div class="sec-inner">
     <div class="sec-label fade-in">Gynecology</div>
     <h2 class="sec-title fade-in">婦人科・産婦人科</h2>
+    <p class="fade-in" style="font-size:13px; color:var(--gray-600); margin:-24px 0 24px;">
+      受付時間・最終受付・休診日は <a href="#gyne-guide" style="color:var(--teal-dark); font-weight:600;">婦人科受診ガイド</a> にまとめています。
+    </p>
     <div class="features-grid">
       <div class="feature-card fade-in">
         <div class="feature-icon">
@@ -1874,10 +2059,8 @@ footer {
           </table>
         </div>
         <p style="font-size:11px; opacity:0.6; margin-top:8px; line-height:1.6;">
-          △＝水・金午前は最終受付10:30まで　☆＝土曜はご予約の方のみ（しばらくの間）<br>
           受付：8:30〜12:00 / 14:30〜18:00　診療：9:00〜12:00 / 15:00〜18:00<br>
-          婦人科初診・1年以上未受診：火木土午前11:00／火木午後17:00まで（水金午前は10:30）<br>
-          ※当院は完全予約制ではありませんが、ご予約の方が優先。婦人科は予約枠が少ないため、基本的にご来院順で診察しています。
+          婦人科の受付時間・最終受付・休診の詳細は <a href="#gyne-guide" style="color:var(--teal-mid); font-weight:600;">婦人科受診ガイド</a> をご覧ください。
         </p>
       </div>
       <div class="schedule-notes fade-in">
@@ -1897,6 +2080,72 @@ footer {
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- 婦人科受診ガイド（情報を一箇所に集約） -->
+<section class="gyne-guide-section" id="gyne-guide">
+  <div class="sec-inner">
+    <div class="sec-label fade-in">Gynecology</div>
+    <h2 class="sec-title fade-in">婦人科受診ガイド</h2>
+    <p class="gyne-guide-lead fade-in">
+      令和4年4月以降、婦人科の受付時間が変更になっております。受診前に最終受付時間と休診日をご確認ください。土曜の婦人科はしばらくの間、ご予約の方のみの診療となります（令和7年より）。
+    </p>
+
+    <div class="gyne-guide-grid fade-in">
+      <div class="gyne-guide-card">
+        <h3>診療時間（婦人科）</h3>
+        <table class="gyne-mini-table">
+          <thead>
+            <tr><th></th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>9:00–12:00</th><td class="ok">◎</td><td class="mark">△</td><td class="ok">◎</td><td class="mark">△</td><td class="mark">☆</td></tr>
+            <tr><th>15:00–18:00</th><td class="ok">◎</td><td>―</td><td class="ok">◎</td><td>―</td><td class="mark">☆</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:11px; color:var(--gray-400); margin-top:8px;">月・日・祝は婦人科休診</p>
+      </div>
+      <div class="gyne-guide-card">
+        <h3>最終受付時間</h3>
+        <ul>
+          <li><strong>再診の方（通常）</strong>：診療時間と同じ（午前12:00／午後18:00まで）</li>
+          <li><strong>水・金の午前</strong>：初診・再診とも <strong>10:30まで</strong>（△）</li>
+          <li><strong>初診・1年以上婦人科未受診の方</strong>
+            <ul style="margin-top:6px;">
+              <li>火・木・土の午前 → <strong>11:00まで</strong></li>
+              <li>水・金の午前 → <strong>10:30まで</strong></li>
+              <li>火・木の午後 → <strong>17:00まで</strong></li>
+            </ul>
+          </li>
+          <li><strong>土曜日</strong>：ご予約の方のみ（☆）</li>
+        </ul>
+      </div>
+      <div class="gyne-guide-card">
+        <h3>休診日（婦人科）</h3>
+        <ul>
+          <li>毎週<strong>月曜日</strong></li>
+          <li><strong>水曜・金曜の午後</strong></li>
+          <li><strong>日曜日・祝日</strong>（全科午前のみの日も婦人科は休診）</li>
+        </ul>
+        <p style="font-size:12px; margin-top:10px; color:var(--gray-600);">※諸事情により休診日が増える場合があります。直近の休診は下記をご確認ください。</p>
+      </div>
+      <div class="gyne-guide-card">
+        <h3>予約・受付のしかた</h3>
+        <ul>
+          <li>当院は<strong>完全予約制ではありません</strong>が、ご予約の方が優先されます。</li>
+          <li>婦人科は予約枠が少ないため、<strong>基本的にはご来院順</strong>で診察させていただいています。</li>
+          <li>産婦人科診療・子宮がん検診は<strong>女性医師（副院長）</strong>が担当します。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gyne-legend fade-in">
+      <strong>◎</strong> 通常診療　
+      <strong>△</strong> 水・金午前は最終受付10:30まで（初診・再診共通）　
+      <strong>☆</strong> 土曜はご予約の方のみ（しばらくの間）
+    </div>
+    <a href="#news" class="gyne-guide-link fade-in">→ 令和8年の婦人科休診一覧はお知らせへ</a>
   </div>
 </section>
 
@@ -1958,11 +2207,11 @@ footer {
     <div class="access-grid">
       <div class="access-map fade-in">
         <iframe
-          src="https://maps.google.com/maps?q=%E5%9D%82%E6%88%B8%E5%B8%82%E7%B7%91%E7%94%BA4-1+Ai+clinic&output=embed&hl=ja"
+          src="https://maps.google.com/maps?q=place_id:ChIJp-g_YkLWGGARuvsT1N7ey4U&amp;hl=ja&amp;z=17&amp;output=embed"
           allowfullscreen
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          title="Ai clinicの地図">
+          title="Ai clinicの地図（坂戸市緑町4-1）">
         </iframe>
       </div>
       <div class="access-info fade-in">
@@ -2014,7 +2263,7 @@ footer {
       </div>
       <div>
         <h4>予約の目安</h4>
-        <p>一般診察は<a href="https://ssc3.doctorqube.com/ai_clinic/" target="_blank" rel="noopener" style="color:var(--teal);font-weight:600;">WEB予約</a>または診療時間内のお電話（<a href="tel:049-277-5225" style="font-weight:600;">049-277-5225</a>）。胃カメラ・マンモグラフィー・超音波・各種検診は電話のみです。休診の詳細は<a href="#news" style="color:var(--teal);font-weight:600;">お知らせ</a>をご覧ください。</p>
+        <p>一般診察は<a href="https://ssc3.doctorqube.com/ai_clinic/" target="_blank" rel="noopener" style="color:var(--teal);font-weight:600;">WEB予約</a>または診療時間内のお電話（<a href="tel:049-277-5225" style="font-weight:600;">049-277-5225</a>）。胃カメラ・マンモグラフィー・超音波・各種検診は電話のみです。婦人科の受付は<a href="#gyne-guide" style="color:var(--teal);font-weight:600;">婦人科受診ガイド</a>、休診は<a href="#news" style="color:var(--teal);font-weight:600;">お知らせ</a>をご覧ください。発熱時の来院はページ上部の赤いバナーをご確認ください。</p>
       </div>
     </div>
   </div>
@@ -2031,6 +2280,7 @@ footer {
     </div>
     <div style="font-size:12px; line-height:2.2;">
       <a href="#news" style="color:inherit; text-decoration:none; display:block;">お知らせ</a>
+      <a href="#gyne-guide" style="color:inherit; text-decoration:none; display:block;">婦人科受診ガイド</a>
       <a href="#depts" style="color:inherit; text-decoration:none; display:block;">診療科目</a>
       <a href="#schedule" style="color:inherit; text-decoration:none; display:block;">診療時間</a>
       <a href="#doctors" style="color:inherit; text-decoration:none; display:block;">医師紹介</a>
