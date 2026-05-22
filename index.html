@@ -308,6 +308,18 @@ nav a:hover { background: var(--teal-light); color: var(--teal); }
   padding: calc(var(--offset) + 12px) 20px 24px;
 }
 .nav-drawer.is-open { transform: translateX(0); }
+html.nav-open,
+body.nav-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+body.nav-open {
+  position: fixed;
+  width: 100%;
+  max-width: 100%;
+  left: 0;
+  right: 0;
+}
 .nav-drawer a,
 .nav-drawer a.nav-drawer-link {
   display: block;
@@ -1635,9 +1647,9 @@ footer {
   </a>
   <nav class="header-nav" aria-label="メインメニュー">
     <a href="#news">お知らせ</a>
-    <a href="#gyne-guide">婦人科</a>
     <a href="#depts">診療科目</a>
     <a href="#schedule">診療時間</a>
+    <a href="#gyne-guide">婦人科</a>
     <a href="#doctors">医師紹介</a>
     <a href="#access">アクセス</a>
     <a href="https://ssc3.doctorqube.com/ai_clinic/" target="_blank" rel="noopener" class="btn-reserve-hd">WEB予約</a>
@@ -1651,9 +1663,9 @@ footer {
 <nav class="nav-drawer" id="nav-drawer" aria-label="モバイルメニュー" aria-hidden="true">
   <p class="nav-drawer-label">MENU</p>
   <a href="#news" class="nav-drawer-link">お知らせ・休診</a>
+  <a href="#depts" class="nav-drawer-link">診療科目（どの科へ）</a>
+  <a href="#schedule" class="nav-drawer-link">診療時間・予約</a>
   <a href="#gyne-guide" class="nav-drawer-link">婦人科受診ガイド</a>
-  <a href="#schedule" class="nav-drawer-link">診療時間</a>
-  <a href="#depts" class="nav-drawer-link">診療科目</a>
   <a href="#doctors" class="nav-drawer-link">医師紹介</a>
   <a href="#access" class="nav-drawer-link">アクセス・ご来院前</a>
   <a href="https://ssc3.doctorqube.com/ai_clinic/" target="_blank" rel="noopener" class="nav-drawer-cta">WEB予約（一般診察）</a>
@@ -1747,165 +1759,6 @@ footer {
         </ul>
       </div>
     </details>
-  </div>
-</section>
-
-<!-- GREETING -->
-<section class="greeting-section">
-  <div class="sec-inner fade-in">
-    <div class="sec-label">Greeting</div>
-    <h2 class="sec-title" style="font-size:22px; margin-bottom:16px;">ごあいさつ</h2>
-    <p class="greeting-text">坂戸駅南口に、消化器、乳腺、婦人科、肝疾患、肛門疾患を専門としたクリニックを開院することになりました。質の高い医療を慈愛の心で丁寧に行うことで、一人でも多くの患者様が、気持ちが癒され、安心し、明るく元気になるお手伝いができればと思います。どうぞよろしくお願い申し上げます。</p>
-    <p class="greeting-sign">院長　渡邊 慶史</p>
-  </div>
-</section>
-
-<!-- PHILOSOPHY -->
-<section class="philosophy-section">
-  <div class="sec-inner">
-    <div class="sec-label fade-in">Our Philosophy</div>
-    <h2 class="sec-title fade-in">３つの理念</h2>
-    <p class="philosophy-tagline fade-in">
-      質の高い医療を慈愛の心で。<br>
-      患者様と地域に、真摯に向き合うために。
-    </p>
-    <div class="philosophy-grid">
-
-      <div class="philosophy-card fade-in">
-        <div class="philosophy-num">01</div>
-        <div class="philosophy-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-        </div>
-        <div class="philosophy-title">患者様の癒し</div>
-        <p class="philosophy-body">質の高い医療を慈愛の心で丁寧に行い、一人でも多くの患者様が気持ちを癒され、安心して明るく元気になれるよう全力でサポートします。</p>
-      </div>
-
-      <div class="philosophy-card fade-in">
-        <div class="philosophy-num">02</div>
-        <div class="philosophy-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-        </div>
-        <div class="philosophy-title">社会貢献</div>
-        <p class="philosophy-body">地域の人々に信頼され、愛されるクリニックであり続けること。地域医療を支えることが、私たちの社会への責任だと考えています。</p>
-      </div>
-
-      <div class="philosophy-card fade-in">
-        <div class="philosophy-num">03</div>
-        <div class="philosophy-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        </div>
-        <div class="philosophy-title">スタッフの成長</div>
-        <p class="philosophy-body">スタッフは何事にも互いに協力し、常に学び、成長し続け、社会に貢献することで、気持ちが充実し、楽しく生き生きと働くことができます。そのようなスタッフと接することで、患者様の気持ちも前向きになり、患者様から学ばせていただき、互いに良い影響、良い循環が生まれることを願います。</p>
-      </div>
-
-    </div>
-    <div class="philosophy-quote fade-in">
-      <div class="philosophy-quote-mark">&ldquo;</div>
-      <p class="philosophy-quote-text">
-        3つの理念を常に忘れずに、日々努力し続けていきたいと思っています。<br>
-        どうぞよろしくお願い申し上げます。<br>
-        <span class="philosophy-sign">— 院長　渡邊 慶史</span>
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- CLINIC FEATURES -->
-<section class="clinic-features-section">
-  <div class="sec-inner">
-    <div class="sec-label fade-in">Our Features</div>
-    <h2 class="sec-title fade-in">当院の9つの特徴</h2>
-
-    <!-- グループ1: アクセス・利便性 -->
-    <details class="features-group fade-in" open>
-      <summary class="features-group-header">
-        <div class="fg-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
-        </div>
-        <span class="fg-title">アクセス・利便性</span>
-        <span class="fg-count">3つの特徴</span>
-        <svg class="fg-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
-      </summary>
-      <div class="features-group-body">
-        <div class="fg-item">
-          <div class="fg-item-num">FEATURE 01</div>
-          <div class="fg-item-title">抜群のアクセス</div>
-          <p class="fg-item-body">東武東上線・越生線 坂戸駅南口より徒歩1分。関越道 坂戸鶴ヶ島ICより3分。駐車場11台・駐輪場も完備。</p>
-        </div>
-        <div class="fg-item">
-          <div class="fg-item-num">FEATURE 02</div>
-          <div class="fg-item-title">土・日・祝日も診療</div>
-          <p class="fg-item-body">平日に休めない方も安心。日曜・祝日は午前のみ診療。月曜（祝日含む）のみ休診です。</p>
-        </div>
-        <div class="fg-item">
-          <div class="fg-item-num">FEATURE 03</div>
-          <div class="fg-item-title">男女別待合室</div>
-          <p class="fg-item-body">不安を抱えている女性の患者様が受診しやすく、安心してお待ちいただけるよう男女別にしています。男性も一緒にお待ちの場合は男性待合室へ。小学生までのお子様はどちらでもお待ちいただけます。</p>
-        </div>
-      </div>
-    </details>
-
-    <!-- グループ2: 女性専門診療 -->
-    <details class="features-group fade-in">
-      <summary class="features-group-header">
-        <div class="fg-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197"/></svg>
-        </div>
-        <span class="fg-title">女性の健康をサポート</span>
-        <span class="fg-count">2つの特徴</span>
-        <svg class="fg-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
-      </summary>
-      <div class="features-group-body">
-        <div class="fg-item">
-          <div class="fg-item-num">FEATURE 04</div>
-          <div class="fg-item-title">女性医師による産婦人科診療</div>
-          <p class="fg-item-body">産婦人科診療・子宮がん検診は女性医師（副院長）が行います。</p>
-        </div>
-        <div class="fg-item">
-          <div class="fg-item-num">FEATURE 05</div>
-          <div class="fg-item-title">乳がん検診・精密検査</div>
-          <p class="fg-item-body">マンモグラフィーは女性スタッフが担当。乳腺外科（院長）による検診・針生検など精密検査まで一貫対応。</p>
-        </div>
-        <div class="fg-item" style="background:var(--gray-50); border-right:none;">
-          <p class="fg-item-body" style="color:var(--gray-400); font-size:11px; margin:auto 0;">坂戸市・鶴ヶ島市の市の検診にも対応しています。</p>
-        </div>
-      </div>
-    </details>
-
-    <!-- グループ3: 専門医療・手術 -->
-    <details class="features-group fade-in">
-      <summary class="features-group-header">
-        <div class="fg-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-        </div>
-        <span class="fg-title">専門医療・日帰り手術</span>
-        <span class="fg-count">4つの特徴</span>
-        <svg class="fg-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
-      </summary>
-      <div class="features-group-body">
-        <div class="fg-item">
-          <div class="fg-item-num">FEATURE 06</div>
-          <div class="fg-item-title">ウイルス肝炎の治療</div>
-          <p class="fg-item-body">C型肝炎は約3か月の内服治療のみで9割以上が治療可能。肝臓専門医（院長）のみが行える治療です。</p>
-        </div>
-        <div class="fg-item">
-          <div class="fg-item-num">FEATURE 07</div>
-          <div class="fg-item-title">苦痛の少ない経鼻内視鏡</div>
-          <p class="fg-item-body">極細・柔らかいファイバーで苦痛を最小限に。レーザー光搭載の富士フィルム最新機種で微細な病変も見逃しません。静脈麻酔も選択可能。</p>
-        </div>
-        <div class="fg-item">
-          <div class="fg-item-num">FEATURE 08</div>
-          <div class="fg-item-title">切らずに治す内痔核</div>
-          <p class="fg-item-body">硬化療法（肛門から注射）。ほぼ無痛で20〜30分程度。保険診療で受けられます。手術はちょっと…という方はまずご相談ください。</p>
-        </div>
-        <div class="fg-item">
-          <div class="fg-item-num">FEATURE 09</div>
-          <div class="fg-item-title">日帰り手術対応</div>
-          <p class="fg-item-body">痔核・裂肛・痔瘻・乳房良性腫瘍・巻き爪など、多くの手術を日帰りで実施。3割負担で約2万円〜。</p>
-        </div>
-      </div>
-    </details>
-
   </div>
 </section>
 
@@ -2296,6 +2149,165 @@ footer {
   </div>
 </section>
 
+<!-- CLINIC FEATURES -->
+<section class="clinic-features-section">
+  <div class="sec-inner">
+    <div class="sec-label fade-in">Our Features</div>
+    <h2 class="sec-title fade-in">当院の9つの特徴</h2>
+
+    <!-- グループ1: アクセス・利便性 -->
+    <details class="features-group fade-in" open>
+      <summary class="features-group-header">
+        <div class="fg-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+        </div>
+        <span class="fg-title">アクセス・利便性</span>
+        <span class="fg-count">3つの特徴</span>
+        <svg class="fg-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="features-group-body">
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 01</div>
+          <div class="fg-item-title">抜群のアクセス</div>
+          <p class="fg-item-body">東武東上線・越生線 坂戸駅南口より徒歩1分。関越道 坂戸鶴ヶ島ICより3分。駐車場11台・駐輪場も完備。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 02</div>
+          <div class="fg-item-title">土・日・祝日も診療</div>
+          <p class="fg-item-body">平日に休めない方も安心。日曜・祝日は午前のみ診療。月曜（祝日含む）のみ休診です。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 03</div>
+          <div class="fg-item-title">男女別待合室</div>
+          <p class="fg-item-body">不安を抱えている女性の患者様が受診しやすく、安心してお待ちいただけるよう男女別にしています。男性も一緒にお待ちの場合は男性待合室へ。小学生までのお子様はどちらでもお待ちいただけます。</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- グループ2: 女性専門診療 -->
+    <details class="features-group fade-in">
+      <summary class="features-group-header">
+        <div class="fg-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197"/></svg>
+        </div>
+        <span class="fg-title">女性の健康をサポート</span>
+        <span class="fg-count">2つの特徴</span>
+        <svg class="fg-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="features-group-body">
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 04</div>
+          <div class="fg-item-title">女性医師による産婦人科診療</div>
+          <p class="fg-item-body">産婦人科診療・子宮がん検診は女性医師（副院長）が行います。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 05</div>
+          <div class="fg-item-title">乳がん検診・精密検査</div>
+          <p class="fg-item-body">マンモグラフィーは女性スタッフが担当。乳腺外科（院長）による検診・針生検など精密検査まで一貫対応。</p>
+        </div>
+        <div class="fg-item" style="background:var(--gray-50); border-right:none;">
+          <p class="fg-item-body" style="color:var(--gray-400); font-size:11px; margin:auto 0;">坂戸市・鶴ヶ島市の市の検診にも対応しています。</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- グループ3: 専門医療・手術 -->
+    <details class="features-group fade-in">
+      <summary class="features-group-header">
+        <div class="fg-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        </div>
+        <span class="fg-title">専門医療・日帰り手術</span>
+        <span class="fg-count">4つの特徴</span>
+        <svg class="fg-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="features-group-body">
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 06</div>
+          <div class="fg-item-title">ウイルス肝炎の治療</div>
+          <p class="fg-item-body">C型肝炎は約3か月の内服治療のみで9割以上が治療可能。肝臓専門医（院長）のみが行える治療です。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 07</div>
+          <div class="fg-item-title">苦痛の少ない経鼻内視鏡</div>
+          <p class="fg-item-body">極細・柔らかいファイバーで苦痛を最小限に。レーザー光搭載の富士フィルム最新機種で微細な病変も見逃しません。静脈麻酔も選択可能。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 08</div>
+          <div class="fg-item-title">切らずに治す内痔核</div>
+          <p class="fg-item-body">硬化療法（肛門から注射）。ほぼ無痛で20〜30分程度。保険診療で受けられます。手術はちょっと…という方はまずご相談ください。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-item-num">FEATURE 09</div>
+          <div class="fg-item-title">日帰り手術対応</div>
+          <p class="fg-item-body">痔核・裂肛・痔瘻・乳房良性腫瘍・巻き爪など、多くの手術を日帰りで実施。3割負担で約2万円〜。</p>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- GREETING -->
+<section class="greeting-section">
+  <div class="sec-inner fade-in">
+    <div class="sec-label">Greeting</div>
+    <h2 class="sec-title" style="font-size:22px; margin-bottom:16px;">ごあいさつ</h2>
+    <p class="greeting-text">坂戸駅南口に、消化器、乳腺、婦人科、肝疾患、肛門疾患を専門としたクリニックを開院することになりました。質の高い医療を慈愛の心で丁寧に行うことで、一人でも多くの患者様が、気持ちが癒され、安心し、明るく元気になるお手伝いができればと思います。どうぞよろしくお願い申し上げます。</p>
+    <p class="greeting-sign">院長　渡邊 慶史</p>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy-section">
+  <div class="sec-inner">
+    <div class="sec-label fade-in">Our Philosophy</div>
+    <h2 class="sec-title fade-in">３つの理念</h2>
+    <p class="philosophy-tagline fade-in">
+      質の高い医療を慈愛の心で。<br>
+      患者様と地域に、真摯に向き合うために。
+    </p>
+    <div class="philosophy-grid">
+
+      <div class="philosophy-card fade-in">
+        <div class="philosophy-num">01</div>
+        <div class="philosophy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </div>
+        <div class="philosophy-title">患者様の癒し</div>
+        <p class="philosophy-body">質の高い医療を慈愛の心で丁寧に行い、一人でも多くの患者様が気持ちを癒され、安心して明るく元気になれるよう全力でサポートします。</p>
+      </div>
+
+      <div class="philosophy-card fade-in">
+        <div class="philosophy-num">02</div>
+        <div class="philosophy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        </div>
+        <div class="philosophy-title">社会貢献</div>
+        <p class="philosophy-body">地域の人々に信頼され、愛されるクリニックであり続けること。地域医療を支えることが、私たちの社会への責任だと考えています。</p>
+      </div>
+
+      <div class="philosophy-card fade-in">
+        <div class="philosophy-num">03</div>
+        <div class="philosophy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="philosophy-title">スタッフの成長</div>
+        <p class="philosophy-body">スタッフは何事にも互いに協力し、常に学び、成長し続け、社会に貢献することで、気持ちが充実し、楽しく生き生きと働くことができます。そのようなスタッフと接することで、患者様の気持ちも前向きになり、患者様から学ばせていただき、互いに良い影響、良い循環が生まれることを願います。</p>
+      </div>
+
+    </div>
+    <div class="philosophy-quote fade-in">
+      <div class="philosophy-quote-mark">&ldquo;</div>
+      <p class="philosophy-quote-text">
+        3つの理念を常に忘れずに、日々努力し続けていきたいと思っています。<br>
+        どうぞよろしくお願い申し上げます。<br>
+        <span class="philosophy-sign">— 院長　渡邊 慶史</span>
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- DOCTORS -->
 <section id="doctors" style="background:#fff;">
   <div class="sec-inner">
@@ -2420,9 +2432,9 @@ footer {
     </div>
     <div style="font-size:12px; line-height:2.2;">
       <a href="#news" style="color:inherit; text-decoration:none; display:block;">お知らせ</a>
-      <a href="#gyne-guide" style="color:inherit; text-decoration:none; display:block;">婦人科受診ガイド</a>
       <a href="#depts" style="color:inherit; text-decoration:none; display:block;">診療科目</a>
       <a href="#schedule" style="color:inherit; text-decoration:none; display:block;">診療時間</a>
+      <a href="#gyne-guide" style="color:inherit; text-decoration:none; display:block;">婦人科受診ガイド</a>
       <a href="#doctors" style="color:inherit; text-decoration:none; display:block;">医師紹介</a>
       <a href="#access" style="color:inherit; text-decoration:none; display:block;">アクセス</a>
       <a href="https://ssc3.doctorqube.com/ai_clinic/" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:none; display:block; font-weight:600;">WEB予約</a>
@@ -2488,7 +2500,7 @@ function updateStatus() {
   if (t >= AM_START && t < AM_END) {
     setStatus('is-open', '午前診療受付中 — 12:00まで', '診療受付中');
   } else if (t >= LUNCH_START && t < LUNCH_END) {
-    setStatus('is-lunch', '休憩中（昼休み）— 午後受付は 14:30〜', '昼休み中');
+    setStatus('is-lunch', '現在お受付しておりません — 午後の受付は 14:30から', '午後 14:30〜受付');
   } else if (t >= PM_START && t < PM_END) {
     setStatus('is-open', '午後診療受付中 — 18:00まで', '診療受付中');
   } else if (t < AM_START) {
@@ -2546,6 +2558,7 @@ window.addEventListener('resize', checkGrid);
   const overlay = document.getElementById('nav-overlay');
   if (!btn || !drawer || !overlay) return;
 
+  let scrollLockY = 0;
   function setOpen(open) {
     btn.classList.toggle('is-open', open);
     drawer.classList.toggle('is-open', open);
@@ -2553,7 +2566,17 @@ window.addEventListener('resize', checkGrid);
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
     overlay.setAttribute('aria-hidden', open ? 'false' : 'true');
-    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) {
+      scrollLockY = window.scrollY;
+      document.documentElement.classList.add('nav-open');
+      document.body.classList.add('nav-open');
+      document.body.style.top = '-' + scrollLockY + 'px';
+    } else {
+      document.documentElement.classList.remove('nav-open');
+      document.body.classList.remove('nav-open');
+      document.body.style.top = '';
+      window.scrollTo(0, scrollLockY);
+    }
   }
 
   btn.addEventListener('click', () => setOpen(!drawer.classList.contains('is-open')));
