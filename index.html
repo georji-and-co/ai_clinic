@@ -7,7 +7,7 @@
 <meta name="description" content="埼玉県坂戸市・坂戸駅南口徒歩1分のAi clinic（アイクリニック）。消化器・乳腺・産婦人科・肝疾患・肛門疾患を専門に、胃カメラ・乳がん検診・C型肝炎治療・日帰り手術に対応。土日祝も診療、女性医師による婦人科診療。TEL 049-277-5225。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600&family=Zen+Old+Mincho:wght@400;600;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after {
   box-sizing: border-box;
@@ -37,10 +37,13 @@ p, li, dd, dt, td, th, span {
   --text:       #222222;
   --font-min:   'Shippori Mincho', serif;
   --font-sans:  'Noto Sans JP', sans-serif;
+  --font-philosophy: 'Zen Old Mincho', 'Noto Serif JP', serif;
+  --font-philosophy-body: 'Noto Serif JP', serif;
+  --demo-banner-h: 36px;
   --header-h:   64px;
   --status-h:   42px;
   --hours-bar-h: 0px;
-  --offset:     calc(var(--header-h) + var(--status-h) + var(--hours-bar-h));
+  --offset:     calc(var(--demo-banner-h) + var(--header-h) + var(--status-h) + var(--hours-bar-h));
   --r:          6px;
   --shadow:     0 2px 20px rgba(30,68,120,0.10);
   --shadow-lg:  0 8px 40px rgba(30,68,120,0.14);
@@ -57,10 +60,48 @@ body {
   line-height: 1.7;
 }
 
+/* ===== DEMO BANNER ===== */
+#demo-banner {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--demo-banner-h);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 14px;
+  background: linear-gradient(90deg, #4a3f08 0%, #6b5600 45%, #4a3f08 100%);
+  color: #fffde6;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+  border-bottom: 2px solid #c9a227;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+}
+.demo-banner-badge {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  background: #e8c547;
+  color: #3d3200;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+.demo-banner-text {
+  text-align: center;
+}
+.demo-banner-text strong {
+  font-weight: 700;
+  color: #fff;
+}
+
 /* ===== STATUS BAR ===== */
 #status-bar {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: var(--demo-banner-h);
+  left: 0; right: 0;
   height: var(--status-h);
   z-index: 200;
   display: flex;
@@ -87,7 +128,8 @@ body {
 /* ===== HEADER ===== */
 header {
   position: fixed;
-  top: var(--status-h); left: 0; right: 0;
+  top: calc(var(--demo-banner-h) + var(--status-h));
+  left: 0; right: 0;
   height: var(--header-h);
   background: #fff;
   border-bottom: 1px solid var(--gray-100);
@@ -151,7 +193,7 @@ nav a:hover { background: var(--teal-light); color: var(--teal); }
 #mobile-hours-bar {
   display: none;
   position: fixed;
-  top: var(--status-h);
+  top: calc(var(--demo-banner-h) + var(--status-h));
   left: 0; right: 0;
   z-index: 190;
   background: #fff;
@@ -164,16 +206,24 @@ nav a:hover { background: var(--teal-light); color: var(--teal); }
   text-decoration: none;
   color: inherit;
 }
-.mobile-hours-gyne-link {
-  display: block;
-  text-align: center;
+.mobile-hours-foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  padding: 3px 10px 5px;
+  border-top: 1px solid var(--gray-100);
   font-size: 10px;
+}
+.mobile-hours-foot .mobile-hours-tag { margin: 0; }
+.mobile-hours-gyne-link {
   font-weight: 600;
   color: var(--teal);
-  background: var(--teal-light);
-  padding: 4px 12px 6px;
   text-decoration: none;
-  border-top: 1px solid var(--gray-100);
+  padding: 1px 6px;
+  background: var(--teal-light);
+  border-radius: 3px;
 }
 .mobile-hours-row {
   display: flex;
@@ -258,7 +308,8 @@ nav a:hover { background: var(--teal-light); color: var(--teal); }
   padding: calc(var(--offset) + 12px) 20px 24px;
 }
 .nav-drawer.is-open { transform: translateX(0); }
-.nav-drawer a {
+.nav-drawer a,
+.nav-drawer a.nav-drawer-link {
   display: block;
   padding: 12px 0;
   border-bottom: 1px solid var(--gray-100);
@@ -266,6 +317,9 @@ nav a:hover { background: var(--teal-light); color: var(--teal); }
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
+}
+.nav-drawer a.nav-drawer-link:hover {
+  color: var(--teal-dark);
 }
 .nav-drawer a.nav-drawer-cta {
   margin-top: 16px;
@@ -805,32 +859,53 @@ section { padding: 64px 24px; }
 .sticky-cta .btn-tel-sm:hover { background: var(--gray-100); }
 .sticky-cta svg { overflow: visible; flex-shrink: 0; }
 
-/* ===== PHILOSOPHY ===== */
+/* ===== PHILOSOPHY（凛とした強さ・青み強調） ===== */
 .philosophy-section {
-  background: var(--gray-800);
-  color: #fff;
+  background: linear-gradient(168deg, #9ebde3 0%, #7aa6d8 28%, #6b9ad4 52%, #8eb0e0 78%, #a8c5eb 100%);
+  color: var(--text);
   padding: 72px 24px;
   position: relative;
   overflow: hidden;
+  border-top: 1px solid rgba(30,68,120,0.15);
+  border-bottom: 1px solid rgba(30,68,120,0.12);
+  font-family: var(--font-philosophy-body);
 }
 .philosophy-section::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 50% 60% at 90% 10%, rgba(30,68,120,0.40) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 40% at 5% 85%, rgba(194,42,48,0.12) 0%, transparent 60%);
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255,255,255,0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 0% 100%, rgba(30,68,120,0.15) 0%, transparent 60%);
   pointer-events: none;
 }
-.philosophy-section .sec-label { color: var(--teal-mid); }
-.philosophy-section .sec-title { color: #fff; }
+.philosophy-section .sec-inner {
+  position: relative;
+  z-index: 1;
+}
+.philosophy-section .sec-label {
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.22em;
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+.philosophy-section .sec-title {
+  font-family: var(--font-philosophy);
+  color: #fff;
+  font-size: clamp(24px, 4vw, 34px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-shadow: 0 1px 12px rgba(30,68,120,0.35);
+}
 .philosophy-tagline {
-  font-family: var(--font-min);
-  font-size: clamp(13px, 2vw, 16px);
-  color: rgba(255,255,255,0.6);
-  line-height: 1.85;
+  font-family: var(--font-philosophy);
+  font-size: clamp(14px, 2vw, 17px);
+  color: rgba(255,255,255,0.92);
+  line-height: 1.9;
   max-width: 580px;
   margin-bottom: 52px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
 }
 .philosophy-grid {
   display: grid;
@@ -840,72 +915,94 @@ section { padding: 64px 24px; }
   z-index: 1;
 }
 .philosophy-card {
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(30,68,120,0.10);
   border-radius: 14px;
   padding: 32px 26px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(4px);
-  transition: border-color 0.25s, background 0.25s;
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(30,68,120,0.06);
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
 }
+.philosophy-card:nth-child(1) { border-top: 3px solid var(--teal-dark); }
+.philosophy-card:nth-child(2) { border-top: 3px solid #4a7ab5; }
+.philosophy-card:nth-child(3) { border-top: 3px solid var(--teal); }
 .philosophy-card:hover {
-  border-color: rgba(179,212,252,0.35);
-  background: rgba(255,255,255,0.07);
+  border-color: rgba(30,68,120,0.18);
+  box-shadow: 0 8px 28px rgba(30,68,120,0.10);
+  transform: translateY(-2px);
 }
 .philosophy-num {
-  font-family: var(--font-min);
+  font-family: var(--font-philosophy);
   font-size: 42px;
-  font-weight: 800;
-  color: rgba(179,212,252,0.22);
+  font-weight: 700;
+  color: rgba(30,68,120,0.12);
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.08em;
 }
 .philosophy-icon {
   width: 48px; height: 48px;
   border-radius: 12px;
-  background: rgba(30,68,120,0.55);
-  border: 1px solid rgba(179,212,252,0.25);
+  background: var(--teal-light);
+  border: 1px solid rgba(179,212,252,0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: -8px;
 }
-.philosophy-icon svg { width: 22px; height: 22px; color: var(--teal-mid); }
+.philosophy-icon svg { width: 22px; height: 22px; color: var(--teal-dark); }
 .philosophy-title {
-  font-family: var(--font-min);
-  font-size: 18px;
+  font-family: var(--font-philosophy);
+  font-size: 19px;
   font-weight: 700;
-  line-height: 1.35;
-  color: #fff;
+  line-height: 1.4;
+  color: var(--teal-dark);
+  letter-spacing: 0.08em;
 }
 .philosophy-body {
+  font-family: var(--font-philosophy-body);
   font-size: 13px;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.9;
+  color: var(--gray-600);
+  line-height: 2;
+  letter-spacing: 0.03em;
 }
 .philosophy-quote {
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: none;
   margin-top: 48px;
-  padding-top: 28px;
+  padding: 28px 32px;
   display: flex;
   align-items: flex-start;
   gap: 18px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(30,68,120,0.10);
+  border-left: 4px solid var(--teal-dark);
+  box-shadow: 0 2px 16px rgba(30,68,120,0.06);
+  position: relative;
+  z-index: 1;
 }
 .philosophy-quote-mark {
-  font-family: var(--font-min);
+  font-family: var(--font-philosophy);
   font-size: 64px;
   line-height: 0.8;
-  color: rgba(179,212,252,0.28);
+  color: rgba(30,68,120,0.15);
   flex-shrink: 0;
   margin-top: 8px;
 }
 .philosophy-quote-text {
-  font-family: var(--font-min);
-  font-size: clamp(13px, 1.8vw, 15px);
-  color: rgba(255,255,255,0.65);
+  font-family: var(--font-philosophy);
+  font-size: clamp(14px, 1.8vw, 16px);
+  color: var(--gray-800);
   line-height: 2;
+  letter-spacing: 0.05em;
+}
+.philosophy-sign {
+  color: var(--gray-400);
+  font-size: 12px;
+  margin-top: 8px;
+  display: block;
+  font-family: var(--font-sans);
 }
 @media (max-width: 767px) {
   .philosophy-grid { grid-template-columns: 1fr; gap: 14px; }
@@ -1327,9 +1424,29 @@ details[open] .fg-title { color: var(--teal-dark); }
   padding: 14px 16px;
 }
 .highlight-box p { font-size: 13px; color: var(--teal-dark); font-weight: 500; line-height: 1.7; }
+.access-visit-notes {
+  margin-top: 28px;
+  background: #fff;
+  border: 1px solid #f0d8d9;
+  border-radius: 10px;
+  padding: 20px 22px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.access-visit-notes h3 {
+  font-family: var(--font-min);
+  font-size: 16px;
+  color: var(--gray-800);
+  margin-bottom: 8px;
+}
+.access-visit-notes p {
+  font-size: 13px;
+  color: var(--gray-600);
+  line-height: 1.75;
+}
 
-/* ===== NOTICE ===== */
-.notice-section { background: var(--accent-lt); }
+/* ===== NOTICE (legacy class for notice-box) ===== */
 .notice-box {
   background: #fff;
   border: 1px solid #f0d8d9;
@@ -1392,7 +1509,6 @@ footer {
   margin-left: auto;
   margin-right: auto;
 }
-
 /* ===== RESPONSIVE ===== */
 /* sticky-ctaのbtns wrapper */
 .sticky-cta-btns { display: flex; gap: 8px; }
@@ -1404,32 +1520,54 @@ footer {
 
 @media (max-width: 767px) {
   :root {
-    --header-h: 56px;
-    --status-h: 38px;
-    --hours-bar-h: 62px;
-    --sticky-cta-h: 78px;
+    --demo-banner-h: 44px;
+    --header-h: 48px;
+    --status-h: 32px;
+    --hours-bar-h: 48px;
+    --sticky-cta-h: 56px;
   }
+  #demo-banner {
+    font-size: 10px;
+    gap: 8px;
+    padding: 0 10px;
+    align-items: center;
+  }
+  .demo-banner-badge { font-size: 9px; padding: 2px 6px; }
+  #status-bar { font-size: 11px; gap: 6px; }
   header {
-    top: calc(var(--status-h) + var(--hours-bar-h));
+    top: calc(var(--demo-banner-h) + var(--status-h) + var(--hours-bar-h));
+    padding: 0 12px;
   }
+  .logo-en { font-size: 18px; }
+  .logo-ja { display: none; }
   #mobile-hours-bar { display: block; }
-  .nav-menu-btn { display: flex; }
+  .mobile-hours-inner { padding: 5px 10px 2px; }
+  .mobile-hours-row { font-size: 10px; gap: 2px 6px; }
+  .mobile-hours-foot { padding: 2px 8px 4px; }
+  .nav-menu-btn { display: flex; width: 36px; height: 36px; }
   nav.header-nav { display: none; }
+  .sticky-status { display: none !important; }
+  .sticky-cta { padding: 6px 12px 8px; gap: 0; }
+  .sticky-cta .btn-web,
+  .sticky-cta .btn-tel-sm { padding: 10px 8px; font-size: 13px; }
   .dept-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .features-grid { grid-template-columns: 1fr; gap: 14px; }
   .schedule-wrap { grid-template-columns: 1fr; }
   .doctors-grid { grid-template-columns: 1fr; }
   .access-grid { grid-template-columns: 1fr; }
   .doctor-card { flex-direction: column; gap: 14px; }
-  footer { padding-bottom: calc(32px + var(--sticky-cta-h)); }
-  .notice-section { padding-bottom: calc(48px + var(--sticky-cta-h)); }
-  .hero { padding: 48px 20px 52px; }
+  footer { padding-bottom: calc(24px + var(--sticky-cta-h)); }
+  .access-section { padding-bottom: calc(40px + var(--sticky-cta-h)); }
+  .hero { padding: 40px 16px 56px; }
   .hero-cta { flex-direction: column; align-items: flex-start; }
   .btn-primary, .btn-tel { width: 100%; justify-content: center; }
   section { padding: 48px 20px; }
   .schedule-table { font-size: 10px; }
   .schedule-table th, .schedule-table td { padding: 6px 3px; }
   .news-top-section { padding: 32px 16px; }
+  .fever-banner { padding: 10px 14px; }
+  .fever-banner-text { font-size: 12px; }
+  .fever-banner-tel { padding: 8px 14px; font-size: 13px; }
 }
 @media (max-width: 400px) {
   .dept-grid { grid-template-columns: 1fr; }
@@ -1447,16 +1585,25 @@ footer {
 /* ===== ANIMATIONS ===== */
 .fade-in {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transform: translateY(14px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
 }
 .fade-in.visible {
   opacity: 1;
   transform: none;
 }
+@media (prefers-reduced-motion: reduce) {
+  .fade-in { opacity: 1; transform: none; transition: none; }
+}
 </style>
 </head>
 <body>
+
+<!-- DEMO BANNER -->
+<aside id="demo-banner" role="note" aria-label="デモサイトの告知">
+  <span class="demo-banner-badge">DEMO</span>
+  <p class="demo-banner-text">このサイトは<strong>リニューアル検討用のデモ</strong>です。内容・連絡先は公式サイトと異なる場合があります。</p>
+</aside>
 
 <!-- STATUS BAR -->
 <div id="status-bar">
@@ -1472,12 +1619,12 @@ footer {
       <strong>診療</strong> 9:00–12:00 / 15:00–18:00
       <span class="mobile-hours-more">詳細 ›</span>
     </div>
-    <div class="mobile-hours-row">
-      <span class="mobile-hours-tag">月曜休診</span>
-      <span class="mobile-hours-tag">日・祝 午前のみ</span>
-    </div>
   </a>
-  <a href="#gyne-guide" class="mobile-hours-gyne-link">婦人科受診ガイド ›</a>
+  <div class="mobile-hours-foot">
+    <span class="mobile-hours-tag">月曜休</span>
+    <span class="mobile-hours-tag">日祝午前</span>
+    <a href="#gyne-guide" class="mobile-hours-gyne-link">婦人科 ›</a>
+  </div>
 </div>
 
 <!-- HEADER -->
@@ -1508,7 +1655,7 @@ footer {
   <a href="#schedule" class="nav-drawer-link">診療時間</a>
   <a href="#depts" class="nav-drawer-link">診療科目</a>
   <a href="#doctors" class="nav-drawer-link">医師紹介</a>
-  <a href="#access" class="nav-drawer-link">アクセス</a>
+  <a href="#access" class="nav-drawer-link">アクセス・ご来院前</a>
   <a href="https://ssc3.doctorqube.com/ai_clinic/" target="_blank" rel="noopener" class="nav-drawer-cta">WEB予約（一般診察）</a>
   <a href="tel:049-277-5225" class="nav-drawer-tel">電話 049-277-5225</a>
 </nav>
@@ -1657,7 +1804,7 @@ footer {
       <p class="philosophy-quote-text">
         3つの理念を常に忘れずに、日々努力し続けていきたいと思っています。<br>
         どうぞよろしくお願い申し上げます。<br>
-        <span style="color:rgba(255,255,255,0.35); font-size:12px; margin-top:8px; display:block;">— 院長　渡邊 慶史</span>
+        <span class="philosophy-sign">— 院長　渡邊 慶史</span>
       </p>
     </div>
   </div>
@@ -2249,21 +2396,14 @@ footer {
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- NOTICE -->
-<section class="notice-section">
-  <div class="sec-inner">
-    <div class="sec-label fade-in">Notice</div>
-    <h2 class="sec-title fade-in">ご来院前の確認</h2>
-    <div class="notice-box fade-in">
+    <div class="access-visit-notes fade-in" id="visit-notes">
       <div class="notice-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
       </div>
       <div>
-        <h4>予約の目安</h4>
-        <p>一般診察は<a href="https://ssc3.doctorqube.com/ai_clinic/" target="_blank" rel="noopener" style="color:var(--teal);font-weight:600;">WEB予約</a>または診療時間内のお電話（<a href="tel:049-277-5225" style="font-weight:600;">049-277-5225</a>）。胃カメラ・マンモグラフィー・超音波・各種検診は電話のみです。婦人科の受付は<a href="#gyne-guide" style="color:var(--teal);font-weight:600;">婦人科受診ガイド</a>、休診は<a href="#news" style="color:var(--teal);font-weight:600;">お知らせ</a>をご覧ください。発熱時の来院はページ上部の赤いバナーをご確認ください。</p>
+        <h3>ご来院前の確認</h3>
+        <p>一般診察は<a href="https://ssc3.doctorqube.com/ai_clinic/" target="_blank" rel="noopener" style="color:var(--teal);font-weight:600;">WEB予約</a>または診療時間内のお電話（<a href="tel:049-277-5225" style="font-weight:600;">049-277-5225</a>）。胃カメラ・マンモグラフィー・超音波・各種検診は電話のみです。婦人科の受付は<a href="#gyne-guide" style="color:var(--teal-dark);font-weight:600;">婦人科受診ガイド</a>、休診は<a href="#news" style="color:var(--teal);font-weight:600;">お知らせ</a>をご覧ください。発熱時の来院はページ上部の赤いバナーをご確認ください。</p>
       </div>
     </div>
   </div>
@@ -2361,15 +2501,31 @@ updateStatus();
 setInterval(updateStatus, 60000);
 
 // ===== FADE IN =====
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 60);
-      observer.unobserve(e.target);
+function revealFadeIn(el, delay) {
+  if (!el.classList.contains('visible')) {
+    setTimeout(() => el.classList.add('visible'), delay || 0);
+  }
+}
+function revealInViewport() {
+  document.querySelectorAll('.fade-in:not(.visible)').forEach((el, i) => {
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight * 0.95 && r.bottom > 0) {
+      revealFadeIn(el, i * 40);
     }
   });
-}, { threshold: 0.12 });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+}
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) {
+      revealFadeIn(e.target, 0);
+      fadeObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+revealInViewport();
+window.addEventListener('load', revealInViewport);
+window.addEventListener('resize', revealInViewport);
 
 // ===== SP 2-col fallback =====
 function checkGrid() {
