@@ -108,9 +108,10 @@ body {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   font-family: var(--font-sans);
+  letter-spacing: 0.02em;
   transition: background 0.4s, color 0.4s;
 }
 #status-bar.is-open   { background: var(--teal-dark); color: #fff; }
@@ -202,7 +203,7 @@ nav a:hover { background: var(--teal-light); color: var(--teal); }
 }
 .mobile-hours-inner {
   display: block;
-  padding: 6px 12px 4px;
+  padding: 8px 14px 6px;
   text-decoration: none;
   color: inherit;
 }
@@ -211,46 +212,48 @@ nav a:hover { background: var(--teal-light); color: var(--teal); }
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 4px 8px;
-  padding: 3px 10px 5px;
+  gap: 6px 10px;
+  padding: 6px 12px 7px;
   border-top: 1px solid var(--gray-100);
-  font-size: 10px;
+  font-size: 12px;
 }
 .mobile-hours-foot .mobile-hours-tag { margin: 0; }
 .mobile-hours-gyne-link {
-  font-weight: 600;
-  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--teal-dark);
   text-decoration: none;
-  padding: 1px 6px;
+  padding: 3px 8px;
   background: var(--teal-light);
-  border-radius: 3px;
+  border-radius: 4px;
 }
 .mobile-hours-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px 10px;
-  font-size: 11px;
-  line-height: 1.35;
+  gap: 6px 12px;
+  font-size: 13px;
+  line-height: 1.45;
 }
 .mobile-hours-row strong {
   color: var(--teal-dark);
   font-weight: 700;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.04em;
 }
 .mobile-hours-tag {
-  font-size: 10px;
-  color: var(--teal);
-  font-weight: 600;
+  font-size: 12px;
+  color: var(--teal-dark);
+  font-weight: 700;
   background: var(--teal-light);
-  padding: 1px 6px;
-  border-radius: 3px;
+  padding: 3px 8px;
+  border-radius: 4px;
 }
 .mobile-hours-more {
   margin-left: auto;
-  font-size: 10px;
-  color: var(--gray-400);
+  font-size: 12px;
+  color: var(--gray-600);
+  font-weight: 600;
   white-space: nowrap;
 }
 
@@ -818,11 +821,11 @@ section { padding: 64px 24px; }
   align-items: center;
   justify-content: center;
   gap: 6px;
-  font-size: 12px;
-  font-weight: 500;
-  padding: 5px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 12px;
   border-radius: 4px;
-  line-height: 1;
+  line-height: 1.3;
 }
 .sticky-status.is-open   { background: var(--teal-light); color: var(--teal-dark); display: flex; }
 .sticky-status.is-lunch  { background: var(--accent-lt); color: #8a6d1a; display: flex; }
@@ -869,7 +872,32 @@ section { padding: 64px 24px; }
   transition: background 0.2s;
 }
 .sticky-cta .btn-tel-sm:hover { background: var(--gray-100); }
+.sticky-cta .btn-map-sm {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: var(--teal-light);
+  border: 1px solid var(--teal-mid);
+  color: var(--teal-dark);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 12px 6px;
+  border-radius: var(--r);
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+.sticky-cta .btn-map-sm:hover {
+  background: #dce8f8;
+  border-color: var(--teal-dark);
+}
 .sticky-cta svg { overflow: visible; flex-shrink: 0; }
+.sticky-cta .btn-label-short { display: none; }
+@media (max-width: 380px) {
+  .sticky-cta .btn-label-full { display: none; }
+  .sticky-cta .btn-label-short { display: inline; }
+}
 
 /* ===== PHILOSOPHY（凛とした強さ・青み強調） ===== */
 .philosophy-section {
@@ -1581,9 +1609,9 @@ footer {
   :root {
     --demo-banner-h: 44px;
     --header-h: 48px;
-    --status-h: 32px;
-    --hours-bar-h: 48px;
-    --sticky-cta-h: 56px;
+    --status-h: 38px;
+    --hours-bar-h: 56px;
+    --sticky-cta-h: 64px;
   }
   #demo-banner {
     font-size: 10px;
@@ -1592,7 +1620,7 @@ footer {
     align-items: center;
   }
   .demo-banner-badge { font-size: 9px; padding: 2px 6px; }
-  #status-bar { font-size: 11px; gap: 6px; }
+  #status-bar { font-size: 13px; gap: 8px; padding: 0 10px; }
   header {
     top: calc(var(--demo-banner-h) + var(--status-h) + var(--hours-bar-h));
     padding: 0 12px;
@@ -1600,15 +1628,22 @@ footer {
   .logo-en { font-size: 18px; }
   .logo-ja { display: none; }
   #mobile-hours-bar { display: block; }
-  .mobile-hours-inner { padding: 5px 10px 2px; }
-  .mobile-hours-row { font-size: 10px; gap: 2px 6px; }
-  .mobile-hours-foot { padding: 2px 8px 4px; }
+  .mobile-hours-inner { padding: 8px 12px 6px; }
+  .mobile-hours-row { font-size: 13px; gap: 4px 10px; }
+  .mobile-hours-foot { padding: 6px 10px 7px; font-size: 12px; }
+  .mobile-hours-tag,
+  .mobile-hours-gyne-link { font-size: 12px; }
   .nav-menu-btn { display: flex; width: 36px; height: 36px; }
   nav.header-nav { display: none; }
   .sticky-status { display: none !important; }
   .sticky-cta { padding: 6px 12px 8px; gap: 0; }
   .sticky-cta .btn-web,
-  .sticky-cta .btn-tel-sm { padding: 10px 8px; font-size: 13px; }
+  .sticky-cta .btn-tel-sm,
+  .sticky-cta .btn-map-sm { padding: 11px 6px; font-size: 12px; gap: 4px; }
+  .sticky-cta .btn-web svg,
+  .sticky-cta .btn-tel-sm svg,
+  .sticky-cta .btn-map-sm svg { width: 15px; height: 15px; }
+  .sticky-cta-btns { gap: 6px; }
   .features-grid { grid-template-columns: 1fr; gap: 14px; }
   .schedule-wrap { grid-template-columns: 1fr; }
   .doctors-grid { grid-template-columns: 1fr; }
@@ -1628,6 +1663,8 @@ footer {
   .fever-banner-tel { padding: 8px 14px; font-size: 13px; }
 }
 @media (max-width: 400px) {
+  .sticky-cta .btn-label-full { display: none; }
+  .sticky-cta .btn-label-short { display: inline; }
 }
 .responsive-2col {
   display: grid;
@@ -2545,11 +2582,15 @@ footer {
   <div class="sticky-cta-btns">
     <a href="https://ssc3.doctorqube.com/ai_clinic/" target="_blank" rel="noopener" class="btn-web">
       <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" style="overflow:visible;"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      WEB予約
+      <span class="btn-label-full">WEB予約</span><span class="btn-label-short">予約</span>
+    </a>
+    <a href="#access" class="btn-map-sm">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" style="overflow:visible;"><path stroke-linecap="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+      地図
     </a>
     <a href="tel:049-277-5225" class="btn-tel-sm">
       <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" style="overflow:visible;"><path stroke-linecap="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 01 1.61 3.37 2 2 0 013.61 1.21h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.9a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      電話する
+      <span class="btn-label-full">電話する</span><span class="btn-label-short">電話</span>
     </a>
   </div>
 </div>
