@@ -2521,7 +2521,7 @@ const fadeObserver = new IntersectionObserver((entries) => {
       fadeObserver.unobserve(e.target);
     }
   });
-}, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+}, { threshold: 0, rootMargin: '0px 0px -50px 0px' });
 document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 revealInViewport();
 window.addEventListener('load', revealInViewport);
